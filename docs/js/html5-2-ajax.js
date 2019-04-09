@@ -94,9 +94,10 @@ $(document).ready(function () {
             /*Just let link work as by default*/
         }
         /*Make special links like with target blank work as usual:*/
-        else if (clickedLink.attr('target').match(/^_blank/)) {
-            /*Just let link work as by default*/
-        }        
+        else if ($(this)[0].hasAttribute("target")){
+            /*Just let link work as by default to go to other publication and reload TOC*/
+        }  
+                
         else if ($(this)[0].hasAttribute("data-olink")){
             /*Just let link work as by default to go to other publication and reload TOC*/
         } 

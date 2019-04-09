@@ -44,4 +44,46 @@
 	.content-container > a.next, .content-container > a.prev {
 		display: none !important;
 	}
+	
+    /* Help Center */
+    .site-header {
+        display: none;
+    }
+
+    .site-sidebar {
+        display: none !important;
+    }
+
+    .site-content {
+        margin-left: 0px;
+    }
+    
+    .toolbar{
+        display: none;
+    }
+    
+    .breadcrumb-container{
+        display: none;
+    }
+    
+    
+    .bottom-pager{
+        display: none;
+    }
+    
+    .section {
+        padding: 0px 0px;
+    }    
+    
+    .site-content{
+        padding-top: 0px;
+    }    
+    
+    main article{
+        margin-top: 0px;
+    }     
+    
+    @page {
+        margin: 2cm;
+    } 
 }

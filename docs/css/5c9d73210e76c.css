@@ -1,0 +1,44 @@
+
+body {
+	font-family: "Montserrat", "Source Sans Pro", "Roboto", sans-serif;
+	font-size: 16px;
+    font-weight: lighter;
+	line-height: 1.4em;
+}
+
+.bg-primary, .btn-primary, .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus, .site-sidebar, .portal-single-publication .publication-icon {
+    background-color: #4482E3; /* Unravel Blue. Was #1976d2 */
+}
+
+.portal-header::before {
+    background-color: none;
+}
+
+.portal-header .portal-search button, .publication-contents h4 span {
+    background-color: #62D3F2;
+}
+
+.warning, .note, .important, .caution, .tip {
+    display: block;
+    padding: 2px 2px 2px 65px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+.center {
+	text-align: center;
+}
+
+span.guilabel {
+    font-weight: bold;
+	color: #41345F; /* Unravel Plum */
+}
+
+h3.title {
+font-variant: small-caps;
+}
+
+
+.varname {
+	font-style: italic;
+}

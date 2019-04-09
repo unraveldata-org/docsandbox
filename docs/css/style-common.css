@@ -408,6 +408,11 @@ img{
 	text-decoration: underline;
 }
 
+.strikethrough {
+	text-decoration: line-through;
+}
+
+
 .emphasis{
     font-style: italic;
 }
@@ -633,6 +638,37 @@ ul.procedure ul.procedure > li::before{
 /* Countering the stop sign (not-allowed) cursor for disabled buttons */
 .btn.disabled, .btn[disabled], fieldset[disabled] .btn {
     cursor: auto;
+}
+
+/* Additional class added for backward compatibility. */
+.tool-print.print-icon {
+    float: right;
+    display: block;
+    padding: 10px;
+}
+
+/* The above styling not for theme2, but all others */
+.theme2 .tool-print.print-icon {
+    float: none;
+    display: inline-block;
+    padding: 0px;
+}
+
+.tool-print.print-icon a {
+    cursor: pointer;
+}
+
+.theme2 .tool-print.print-icon a {
+    color: #fff;
+}
+
+.tool-print.print-icon .fa-print:before {
+    margin-right: 0.5em;
+}
+
+.tool-print.print-icon .print-text {
+    margin-left: 0.5em;
+    display: none;
 }
 
 /*Swagger embed:*/
