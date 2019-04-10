@@ -1,0 +1,83 @@
+
+body {
+	font-family: "Montserrat", "Source Sans Pro", "Roboto", sans-serif;
+	font-size: 1.5em;
+    font-weight: lighter;
+	line-height: 1.5em;
+}
+
+.bg-primary, .btn-primary, .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus, .site-sidebar, .portal-single-publication .publication-icon {
+    background-color: #4482E3; /* Unravel Blue. Was #1976d2 */
+}
+
+.cc-color-override--562569728.cc-window {
+    background-color: rgb(65, 52, 95);
+}
+
+.cc-color-override--562569728 .cc-btn:hover, .cc-color-override--562569728 .cc-btn:focus {
+    background-color: rgb(98,211,242);
+}
+
+.cc-color-override--562569728.cc-revoke {
+    background-color: rgb(98,211,242);
+}
+
+.center {
+	text-align: center;
+}
+
+.code, .filename, .userinput {
+	color: inherit;
+	background-color: inherit;
+	font-size: normal;
+}
+
+.portal-header::before {
+    background-color: none;
+}
+
+.portal-header .portal-search button, .publication-contents h4 span {
+    background-color: #62D3F2;
+}
+
+.warning, .note, .important, .caution, .tip {
+/*  display: block; */
+/*	background-color: inherit; */
+    padding: 0px 0px 2px 65px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.varname {
+	font-style: italic;
+}
+
+
+
+
+
+div.section-toc-title {
+    margin-top: 4.2em;
+}
+
+span.guilabel {
+	color: #41345F; /* Unravel Plum */
+}
+
+h3.title {
+	font-size: smaller;
+	font-variant: small-caps;
+}
+
+h6.title {
+    margin-top: 4.2em;
+}
+
+table {
+    width: -moz-available;
+}
+
+pre, code {
+    font-size: 1em;
+}
+
