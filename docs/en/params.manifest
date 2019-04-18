@@ -6,10 +6,10 @@
   <param name="publication.id" select="en-UUID-e6921946-dcab-55c2-ba2a-efe023b07b4a"/>
   <param name="use.fuse.search" select="1"/>
   <param name="use.multilingual.default.search" select="0"/>
-  <param name="custom.css.source" select="/var/www/ccms/usr/unraveldata/xsl/custom/assets/layout-586/5cb7b8c5d3bf2.css"/>
+  <param name="custom.css.source" select="/var/www/ccms/usr/unraveldata/xsl/custom/assets/layout-586/5cb7c6ea18d56.css"/>
   <param name="portal.logo.filename" select="/var/www/ccms/usr/unraveldata/xsl/custom/assets/layout-586/5c87e5197b35e.png"/>
   <param name="portal.background.filename" select="/var/www/ccms/usr/unraveldata/xsl/custom/assets/layout-586/5c9fad83dc029.png"/>
-  <param name="portal.background.filename.out" select="/paligo/tmp/unraveldata/production-5cb7bd2ab85521.12527894/9968-home-html5/out/css/image/portal-bg.jpg"/>
+  <param name="portal.background.filename.out" select="/paligo/tmp/unraveldata/production-5cb7c7c8287bb0.64451866/9968-home-html5/out/css/image/portal-bg.jpg"/>
   <param name="company.name" select="Unravel Data Inc. All rights reserved."/>
   <param name="copyright.year" select=""/>
   <param name="copyright" select=" &#xA9; 2016-2019 Unravel Data Inc. All rights reserved. "/>
