@@ -1,0 +1,45 @@
+/* Circled numbers for procedure top level list items: */
+div.procedure{
+  margin-left: 0px;
+}
+/* Targeting ul as well, because for one-step procedures, it becomes a ul */
+ol.procedure, ul.procedure {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  margin-left: 40px;
+}
+.procedure {
+  counter-reset: step-counter;
+}
+.procedure > li {
+  counter-increment: step-counter;
+  margin-bottom: 10px;
+}
+.procedure > li::before {
+    margin-left: -40px;
+    position: absolute;
+    width: 24px;
+    padding-left: 0px;
+    height: 24px;
+    line-height: 24px;
+    vertical-align: top;
+    -webkit-border-radius: 13px;
+    -moz-border-radius: 13px;
+    border-radius: 13px;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    color: #FFFFFF;
+    display: inline-block;
+    font-weight: 700;
+    content: counter(step-counter);
+    font-size: 14px;
+    text-align: center;
+}
+.theme2 .procedure > li::before {
+  background-color: #333;
+}
+.theme1 .procedure > li::before {
+    background-color: #54a1e5;
+}

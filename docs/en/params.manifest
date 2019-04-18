@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<params>
+  <param name="html5.theme" select="1"/>
+  <param name="html5.content.theme" select="2"/>
+  <param name="use.algolia.search" select="0"/>
+  <param name="publication.id" select="en-UUID-e6921946-dcab-55c2-ba2a-efe023b07b4a"/>
+  <param name="use.fuse.search" select="1"/>
+  <param name="use.multilingual.default.search" select="0"/>
+  <param name="custom.css.source" select="/var/www/ccms/usr/unraveldata/xsl/custom/assets/layout-586/5cb7b8c5d3bf2.css"/>
+  <param name="portal.logo.filename" select="/var/www/ccms/usr/unraveldata/xsl/custom/assets/layout-586/5c87e5197b35e.png"/>
+  <param name="portal.background.filename" select="/var/www/ccms/usr/unraveldata/xsl/custom/assets/layout-586/5c9fad83dc029.png"/>
+  <param name="portal.background.filename.out" select="/paligo/tmp/unraveldata/production-5cb7bd2ab85521.12527894/9968-home-html5/out/css/image/portal-bg.jpg"/>
+  <param name="company.name" select="Unravel Data Inc. All rights reserved."/>
+  <param name="copyright.year" select=""/>
+  <param name="copyright" select=" &#xA9; 2016-2019 Unravel Data Inc. All rights reserved. "/>
+  <param name="sticky.header" select="0"/>
+  <param name="full.width.header" select="0"/>
+  <param name="cookie.consent" select="opt-out"/>
+  <param name="privacypolicy" select="https://unraveldata.com/privacy-policy/"/>
+  <param name="privacypolicy" select="https://unraveldata.com/privacy-policy/"/>
+  <param name="google.analytics" select=""/>
+  <param name="google.analytics.type" select="gtag"/>
+  <param name="user.custom.script" select="0"/>
+  <param name="layout.custom.script" select="/var/www/ccms/usr/unraveldata/xsl/custom/assets/layout-586/5c943cd5beb8f.js"/>
+  <param name="create.sitemap" select="0"/>
+  <param name="destination.domain" select=""/>
+  <param name="submit.feedback" select="1"/>
+  <param name="voting.panel" select="1"/>
+  <param name="feedback.email" select="docs@unraveldata.com"/>
+  <param name="feedback.description" select="Would you like to provide feedback? Just click here to suggest edits."/>
+  <param name="voting.panel.text" select="Was this helpful?"/>
+  <param name="yes" select="Yes"/>
+  <param name="no" select="No"/>
+  <param name="custom.meta.tags" select=""/>
+  <param name="last.modified.text" select="Last modified: "/>
+  <param name="categories.shown" select="7"/>
+  <param name="single.topic.permalink" select=""/>
+  <param name="logo.link" select="https://docs.unraveldata.com/"/>
+  <param name="feedback.toggle" select="no-button"/>
+  <param name="bootstrap.version" select="340"/>
+  <param name="layout.custom.style.persistent.name" select="0"/>
+  <param name="open.category.first.topic" select="0"/>
+  <param name="elastic.site.search" select=""/>
+  <param name="other.custom.search" select="0"/>
+  <param name="use.page.toc" select="1"/>
+  <param name="swagger.embed" select="0"/>
+  <param name="use.separate.relationship.toc" select="1"/>
+  <param name="in.this.section.string" select="In this section"/>
+  <param name="seealso.string" select="See also"/>
+  <param name="use.section.toc" select="after"/>
+  <param name="taxonomies.relationship" select=""/>
+  <param name="use.top.nav" select="1"/>
+  <param name="external.top.nav.links" select="text:Free Trial, url:https://unraveldata.com/free-trial/; text:Blog, url:https://unraveldata.com/blog/; text:Unravel, url:https://unraveldata.com;"/>
+  <param name="top.nav.section.depth" select="2"/>
+  <param name="gentext.for.top.nav" select="0"/>
+  <param name="version.dropdown.values" select="text:Unravel 4.4, url:https://unraveldata.atlassian.net/wiki/spaces/UN44/overview;&#10;text:Unravel 4.3, url:https://unraveldata.atlassian.net/wiki/spaces/UN43/overview;&#10;text:Unravel 4.2, url:https://unraveldata.atlassian.net/wiki/spaces/UN42/overview;&#10;text:Unravel 4.1, url:https://unraveldata.atlassian.net/wiki/spaces/UN40/overview;"/>
+  <param name="enter.key.search.behaviour" select="select"/>
+  <param name="versions.file" select=""/>
+  <param name="fuse.threshold" select="0.3"/>
+  <param name="use.print.icon" select="0"/>
+</params>
