@@ -1,12 +1,12 @@
 {
    "swagger": "2.0",
    "info": {
-      "description": "Unravel REST Endpoints",
+      "description": "Unravel rest endpoints",
       "version": "1.0.0",
-      "title": "Unravel REST API",
+      "title": "Unravel Rest Api",
       "contact": {
-         "name": "Api Documentation",
-         "url": "https://docs.unraveldata.com/en/api-rest.html"
+         "name": "Api Doc",
+         "url": "https://unraveldata.atlassian.net/wiki/spaces/UN44/pages/599851245/REST+API"
       }
    },
    "basePath": "/api/v1/",
@@ -17,68 +17,68 @@
    ],
    "tags": [
       {
-         "name": "clusters",
-         "description": "Cluster operations"
+         "name": "operation",
+         "description": "All operational related endpoints"
       },
       {
-         "name": "apps and yarn_rm",
-         "description": "Applications and APMs"
+         "name": "apps",
+         "description": "All app related endpoints"
       },
       {
          "name": "workflows",
-         "description": "Workflows"
+         "description": "Access to workflows"
       },
       {
-         "name": "autoactions",
-         "description": "Auto actions"
+         "name": "auto-actions",
+         "description": "Access to auto-actions"
       },
       {
-         "name": "search/cb",
-         "description": "Chargeback reports"
+         "name": "Chargeback",
+         "description": "Access to chargeback report"
       },
       {
-         "name": "reports/data",
-         "description": "Data insights"
+         "name": "Data Insights",
+         "description": "Access to data insights"
       },
       {
-         "name": "common/app",
-         "description": "Application details"
+         "name": "Applications",
+         "description": "Access to application details"
       },
       {
-         "name": "jobs",
-         "description": "Job status"
+         "name": "Job",
+         "description": "Job related endpoints"
       },
       {
-         "name": "celery and reports/data",
-         "description": "Capacity reports and forecasting"
+         "name": "Forcasting",
+         "description": "Access to the capacity forecasting endpoints"
       },
       {
-         "name": "celery and reports/data",
-         "description": "Small Files reports"
+         "name": "Smallfiles",
+         "description": "Access to the small files endpoints"
       },
       {
-         "name": "reports/files_reports",
-         "description": "File reports"
+         "name": "File-Reports",
+         "description": "Access to the File Reports endpoints"
       },
       {
-         "name": "reports/data and reports/celeryreports",
-         "description": "Top X reports"
+         "name": "TopX",
+         "description": "Access to the Top X endpoints"
       },
       {
-         "name": "reports/celeryreports, celery, reports/clusteroptimization",
-         "description": "Cluster Optimization reports"
+         "name": "ClusterOptimization",
+         "description": "Access to the ClusterOptimization endpoints"
       },
       {
-         "name": "celery, reports/data, and reports/queueanalysis",
-         "description": "Queue Analysis reports"
+         "name": "QueueAnalysis",
+         "description": "Access to the QueueAnalysis endpoints"
       },
       {
-         "name": "celery and reports",
-         "description": "Migration planning"
+         "name": "CloudReports",
+         "description": "Access to the CloudReports endpoints"
       },
       {
-         "name": "reports/schedules",
-         "description": "Report schedules"
+         "name": "ScheduledReports",
+         "description": "Access to the ScheduledReports"
       }
    ],
    "nonBodyParameters": {
