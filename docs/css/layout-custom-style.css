@@ -1,0 +1,123 @@
+
+body {
+	font-family: "Montserrat", "Source Sans Pro", "Roboto", sans-serif;
+	font-size: 1.5em;
+    font-weight: lighter;
+	line-height: 1.5em;
+}
+
+.bg-primary, .btn-primary, .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus, .site-sidebar, .portal-single-publication .publication-icon {
+    background-color: #4482E3; /* Unravel Blue. Was #1976d2 */
+}
+
+
+.center {
+	text-align: center;
+}
+
+.code, .filename, .userinput {
+	color: inherit;
+	background-color: inherit;
+	font-size: normal;
+	padding: 2px 0px;
+}
+
+.image-viewport img {
+    margin: 0px;
+}
+
+
+.materialboxed {
+max-width: 80% !important;
+width: auto !important;
+height: auto !important;
+}
+
+.portal-header::before {
+    background-color: none;
+}
+
+.portal-header .portal-search button, .publication-contents h4 span {
+    background-color: #62D3F2;
+}
+
+.portal-contents.featured-content {
+	visibility: hidden;
+}
+
+.warning, .note, .important, .caution, .tip {
+/*  display: block; */
+/*	background-color: inherit; */
+    padding: 0px 0px 2px 65px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.varname {
+	color: red;
+	background-color: inherit;
+	font-style: italic;
+	padding: none;
+}
+
+
+
+
+code {
+	padding: 2px 0px;
+}
+
+div.section-toc-title {
+    margin-top: 4.2em;
+}
+
+span.guilabel {
+	color: #41345F; /* Unravel Plum */
+}
+
+h3.title {
+	font-size: smaller;
+	font-variant: small-caps;
+}
+
+h5.featured-content-label {
+	visibility: hidden;
+}
+
+
+h6.title {
+    margin-top: 4.2em;
+}
+
+table {
+    width: -moz-available;
+}
+
+pre, code {
+    font-size: 1em;
+}
+
+
+
+/* @import url('cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css'); */
+
+
+/* Algolia DocSearch */
+.site-sidebar{
+    overflow-x: initial;
+    overflow-y: initial;
+}
+
+/* These tweaks are needed for HTML5HelpCenter output based on Paligo's "Theme 2" */
+.algolia-autocomplete .ds-dropdown-menu:before{
+    display: none!important;
+}
+.tool-search-form .algolia-autocomplete.algolia-autocomplete-right .ds-dropdown-menu{
+    left: 23%!important;
+    margin: 0px 0 0!important;
+    max-width: 1000px;
+}
+.tool-search {
+margin-bottom: -15px;
+}
+

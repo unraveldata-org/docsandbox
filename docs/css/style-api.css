@@ -1,0 +1,358 @@
+/**
+ * Light grey: #fafcfc
+ * Light grey (darker): #f0f4f7
+ */
+ 
+body{
+    padding-top: 0px;
+    position: relative;
+}
+.container-fluid.background-container {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    z-index:1;
+    top:0;
+}
+.background-container * {
+    height: 100%;
+    padding-right: 0;
+}
+.background-container header {
+    padding-right: 15px;
+}
+.background-toc {
+    background: #fafcfc;
+    border-right: 1px solid #f0f4f7;
+}
+.background-code {
+    background: pink;
+    margin-right: -15px;
+    background: #2d3134;
+}
+
+h1,
+h2,
+h3,
+h4,
+.h1,
+.h2,
+.h3,
+.h4{
+    font-weight: 300;
+    line-height: 1.25;
+}
+.entry-code table.table,
+.entry-code .table>thead>tr>th,
+.entry-code .table>tbody>tr>th,
+.entry-code .table>tfoot>tr>th,
+.entry-code .table>thead>tr>td,
+.entry-code .table>tbody>tr>td,
+.entry-code .table>tfoot>tr>td {
+    border-color: #595959;
+    background-color: inherit!important;
+}
+
+table.table,
+.table>thead>tr>th,
+.table>tbody>tr>th,
+.table>tfoot>tr>th,
+.table>thead>tr>td,
+.table>tbody>tr>td,
+.table>tfoot>tr>td {
+    border-color: #ddd;
+}
+
+#toc-container .affix {
+    max-height: 100%;
+    overflow: auto;
+}
+#logotype-container.brand{
+    border-bottom: 1px solid #f0f4f7;
+    border-right: 1px solid #f0f4f7;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    padding-left: 15px;
+}
+
+#logotype-container img{
+    margin-left: 10px;
+    max-width: 100px;
+}
+
+#content-wrapper section{
+    padding-top: 20px;
+}
+
+/*pre, code.code{
+    border: none;
+    word-break: normal;
+    white-space: pre-wrap;
+}
+
+code.code{
+    white-space: pre-line;
+}*/
+
+header {
+    margin-left: -15px;
+}
+.nav-pills > li{
+    padding: 5px;
+}
+.brand a{
+    text-decoration: none;
+}
+.nav-sidebar{
+    padding-top: 20px;
+    padding-bottom: 30px;
+    padding-left: 0px;
+    border-right: 1px solid #f0f4f7;
+}
+.nav-sidebar > .close {
+    display: none;
+}
+.nav-sidebar .nav li a{
+    padding: 6px 15px;
+    color: #444;
+}
+.nav-sidebar .nav li.active > a{
+    color: #337ab7
+}
+.nav-sidebar .nav .nav{
+    display: none;
+}
+.nav-sidebar .nav .active .nav{
+    display: block;
+}
+.nav-sidebar .nav .nav > li > a{
+    padding: 5px 10px 5px 30px;
+    font-size: .9em;
+}
+.nav-sidebar li:hover > a,
+.nav-sidebar li.active > a {
+    background-color: transparent !important;
+}
+.nav-code-selection{
+    z-index: 100;
+    background: #24272a;
+    padding: 10px;
+    margin-left: 7.5px;
+    position: fixed;
+    width: 100%;
+    border-bottom: 1px solid #24272a;
+}
+
+/*ASN: In case there's just one programming language used:*/
+.nav-code-selection-hidden{
+    visibility: hidden;
+}
+.nav-code-selection > li > a {
+    color: #fff;
+}
+.nav-code-selection > li > a:hover {
+    color: #666;
+}
+
+/**
+ * Main page left/right content
+ */
+.entry{
+    margin-top: 40px;
+}
+.entry-row{
+    padding-bottom: 0em;
+}
+.entry-code{
+    z-index: 2;
+    padding: 60px 5px 20px 45px;
+    color: #ddd;
+}
+/*Not necessary, done in js*/
+/*.entry-code .code{
+    display: none;
+}*/
+.entry-code > div:first-child{
+    display: block;
+}
+.entry-text{
+    background: #fff;
+    padding: 0 30px;
+}
+[data-code-view] pre {
+    padding: 30px;
+    background-color:#24272a;
+}
+.container-fluid{
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    position: relative;
+    z-index: 10;
+}
+
+/**
+ * Elements style
+ */
+.warning, .note, .important, .caution, .tip {
+    background-color: #fafcfc;
+}
+
+/* ASN: Special for callout icons */
+/*.calloutlist img, .co img {
+	width: 1em;
+	/\*margin-top: 0.2em;*\/
+}
+
+.co img {
+	/\*margin-bottom: 0.5em;*\/
+}
+
+.calloutlist img {
+	margin-left: 25px;
+}
+
+/\* ASN: If not using images for callouts, make sure the color of the callout number is not changed by the highlight plugin *\/
+.co span{
+    color:#54a1e5!important;
+}   
+
+.co .fa-stack .text-primary span, .calloutlist .fa-stack .text-primary {
+    color: #fff!important;
+}
+
+strong.fa-stack-1x.text-primary {
+    color: #fff!important;
+}
+
+.co .fa-3x, .calloutlist .fa-3x{
+   font-size: 0.8em; 
+}
+
+a.co {
+    font-size: 0.9em;
+}
+
+a.co span.unicode-callout {
+    font-size: 1.8em!important;
+    line-height: 1em;
+}
+
+
+a.co, .calloutlist a{
+    text-decoration: none;
+} 
+
+/\*Variation on this: https://stackoverflow.com/questions/4861224/how-to-use-css-to-surround-a-number-with-a-circle*\/
+a.co:focus{
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    padding: 8px;
+    margin-right: -20px;
+    border: 2px solid #666;
+    border: 2px solid rgba(81, 203, 238, 1);
+    box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+    color: #666;
+    text-align: center;
+    text-decoration: none;
+    outline:none;
+}
+
+
+
+.calloutlist span.unicode-callout {
+    font-size: 1.3em;
+    line-height: 1em;
+    margin-left: 25px;
+}
+
+span.plain-text-callout:before {
+    content: '(';
+}
+
+span.plain-text-callout:after {
+    content: ')';
+}
+
+/\*Too  much space before the parenthesis if not reducing by negative margin*\/
+.co span.plain-text-callout {
+    margin-left: -0.1em;
+}
+
+.calloutlist span.plain-text-callout {
+    margin-left: 25px;
+}
+
+
+
+/\*Remove borders for calloutlist, and adjust padding:*\/
+.calloutlist td:first-child {
+    border: none!important;
+    /\*padding: 0px 25px!important;*\/
+    padding: 0px!important;
+}
+
+.calloutlist td:first-child a {
+    /\*margin-left: 25px;*\/
+}
+
+.calloutlist td {
+    border: none!important;
+    padding: 0px 20px!important;
+}*/
+
+/* .flex-container {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+ .flex-item {
+    /\*width: 200px;*\/
+    margin: 10px;
+}*/
+
+/*
+ * Video containers
+ */
+.video-container .content {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 30px; height: 0; overflow: hidden;
+    margin-bottom: 1em;
+}
+ 
+.video-container iframe,
+.video-container object,
+.video-container embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.videoobject {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 35px;
+    height: 0;
+    overflow: hidden;
+    margin-top: 2em;
+}
+
+.videoobject iframe {
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+pre{
+    border:none;
+}
