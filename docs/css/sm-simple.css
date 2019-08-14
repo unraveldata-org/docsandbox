@@ -4,10 +4,6 @@
         float: left;
     }
 
-    .theme2 .sm-simple {
-        /* Allow search field to hide the top nav menu */
-        z-index: 0;
-    }
     .sm-simple ul {
         position: absolute;
         width: 12em;

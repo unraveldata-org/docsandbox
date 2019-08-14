@@ -45,10 +45,13 @@ $(document).ready(function () {
  	var $searchfield = $(".tool-search-form .search-field");
 	$(".toolbar .tool-search").click(function() {
 		$searchfield.fadeIn(100).focus();
+		$(".top-nav-menu").fadeOut(100);
 		});
 		$searchfield.focusout(function() {
 		$(".tool-search-form .search-field").fadeOut(100);
+		$(".top-nav-menu").fadeIn(100);
 	});
+	initChecklist();
 });
 
 /* Adjusting position in view for internal page toc links. Ajax version handles this elsewhere */

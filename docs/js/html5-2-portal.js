@@ -44,7 +44,10 @@ $(document).ready(function () {
 
 function showCurrentLanguage(portalLanguage) {
     $("*[data-portal-language]").hide();
-    $("*[data-portal-language='" + portalLanguage + "']").show();
+    var $portal_content = $('.portal-content');
+    $portal_content.hide();
+    if ($portal_content.length === 1) {$portal_content.show();}
+    $("*[data-portal-language='" + portalLanguage + "']").closest('.portal-content').addBack().show();
     //Show/hide more category panels, only for the current language
     $("*[data-portal-language='" + portalLanguage + "'] .portal-single-publication:not(:lt(" + categoriesShown + "))").hide();
     var pageUrl = '?lang=' + portalLanguage;

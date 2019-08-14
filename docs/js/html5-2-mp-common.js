@@ -228,17 +228,27 @@ function getEmbedCode(){
          */
         var resource = $(this).data("resource");
 
+        /**
+         * @type {Array}
+         */
+        var lang = hljs.listLanguages();
+
         $.get(resource)
             .fail(function(){
                 throw "[Paligo] Not able to load source: "+resource;
             })
             .success(function(data) {
-                var code = hljs.highlightAuto(data);
+                var code;
 
-                $pre.empty()
-                    .append(code.value)
-                    .addClass('hljs')
-                    .addClass(code.language);
+                $pre.empty().addClass('hljs');
+
+                if ($pre.data('language') && $.inArray($pre.data('language'), lang) > -1) {
+                    code = hljs.highlight($pre.data('language'), data);
+                } else {
+                    code = hljs.highlightAuto(data);
+                }
+        
+                $pre.append(code.value).addClass(code.language);
             });
     });
 }

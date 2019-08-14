@@ -356,3 +356,54 @@ span.plain-text-callout:after {
 pre{
     border:none;
 }
+
+/* OpenAPI imports:*/
+.openapi-responses .code {
+    display: block !important;
+}
+
+.openapi-responses .programlisting {
+    background-color: #2d3e53;
+}
+
+.informalexample.openapi-responses {
+    background-color: #2d3e53;
+    border-radius: 4px;
+}
+
+.informalexample.openapi-samples .code {
+    background-color: #24272a;
+    border-radius: 4px;
+}
+
+.responses-title {
+    padding: 9.5px;
+    background-color: #476385;
+    border-radius: 4px 4px 0px 0px;
+}
+
+.response-language{
+    margin: 10px;
+    margin-top: 20px;
+}
+
+.response-language > span{
+    padding: 5px;
+    background-color: #243142;
+    border-radius: 4px;
+}
+
+.openapi-responses .programlisting {
+padding-top: 5px;
+}
+
+.samples-title {
+    padding: 9.5px;
+    background-color: #5e666e;
+    border-radius: 4px 4px 0px 0px;
+}
+/*End OpenAPI imports:*/
+
+#content-wrapper .article {
+    margin-top: 70px;
+}
