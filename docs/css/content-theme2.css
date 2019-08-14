@@ -268,7 +268,7 @@ main ul {
 
 .nav-site-sidebar .topic-link{
     position: relative;
-    padding-right: 30px;
+    padding-right: 38px;
 }
 
 .toc .glyphicon{
@@ -276,7 +276,6 @@ main ul {
     top: 0;
     right: 10px;
     margin: 4px;
-    margin-top: 10px;
     display: inline-block;
     font-family: 'Glyphicons Halflings';
     -webkit-font-smoothing: antialiased;
@@ -284,6 +283,10 @@ main ul {
     font-weight: 300;
     line-height: 1;
     font-size: 10px;
+}
+
+.theme2 .toc .glyphicon{
+    margin-top: 6px;
 }
 
 .theme2 .toc > li{
