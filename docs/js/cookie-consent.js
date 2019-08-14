@@ -1,20 +1,4 @@
-$(document).ajaxComplete(function () {
-    initCookieConsent();
-    
-    $('.cc-deny').click(function () {
-        location.reload();
-    });
-});
-
 window.addEventListener("load", function () {
-    initCookieConsent();
-    
-    $('.cc-deny').click(function () {
-        location.reload();
-    });
-});
-
-function initCookieConsent() {
     window.cookieconsent.initialise({
         "palette": {
             "popup": {
@@ -36,15 +20,14 @@ function initCookieConsent() {
                 var cookies = get_cookies_array();
                 for (var name in cookies) {
                     /*Disable all cookies except the necessary one holding the user's choice of consent*/
-                    if (! name.match('^cookieconsent_status')) {
+                    if(!name.match('^cookieconsent_status')){
                         eraseCookie(name);
                     }
                 }
             }
         }
     })
-}
-
+});
 
 function get_cookies_array() {
     
@@ -84,11 +67,5 @@ function readCookie(name) {
 }
 
 function eraseCookie(name) {
-    var hostname = location.hostname;
-    countparts = hostname.split(".").length;
-    var rootdomain = hostname;
-    if(countparts === 3){
-        rootdomain = '.' + hostname.replace(/(.*?)\.(.*)/, '$2');
-    }
-    document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;domain=" + rootdomain +";";
+    createCookie(name, "", -1);
 }

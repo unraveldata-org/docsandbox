@@ -14,9 +14,25 @@ function activeToolpage(name) {
  * contains the link to the current page
  */
 function setActiveTocline() {
+    // set the active link in the toc
     var path = purl().attr("path");
-
-	$.each($("ul.toc a"), function (i, e) {
+    
+/*        $.each($("ul.toc a"), function (i, e) {
+        var href = $(this).attr("href");
+        href = href.replace(/^.*\//, '');
+        path = path.replace(/^.*\//, '');
+        
+        /\*var r = new RegExp(path + '$');*\/
+        
+        if (href == path) {
+            $(this).closest(".topic-link").addClass("active");
+            return false;
+        }
+    });*/
+    /*ASN: Now changing to get full absolute paths instead, as we need to be able to distinguish
+    between topics with the same name*/
+    $.each($("ul.toc a"), function (i, e) {
+        /*var href = $(this).attr("href");*/
         var href = decodeURI(this.href);
         var r = new RegExp(path + '$');
         
@@ -151,47 +167,43 @@ function addSwipeNavigation() {
 }
 
 function getEmbedCode(){
-	var lang = hljs.listLanguages();
-
-	$("pre.embedcode").each(function () {
+    $("pre.embedcode").each(function () {
         var resource = $(this).data("resource");
         if(resource.match(/^https/)){
-			var $pre = $(this);
-			
-			$.get(resource).done(function(data){
-                var code;
-
-                $pre.empty().addClass('hljs');
-
-                if ($pre.data('language') && $.inArray($pre.data('language'), lang) > -1) {
-                    code = hljs.highlight($pre.data('language'), data);
-                } else {
-                    code = hljs.highlightAuto(data);
+            var _this = $(this);
+            $.ajax({
+                type: "GET",
+                url: resource,
+                success: function (data, status) {
+                    _this.text(data);
+                    $('pre.embedcode').each(function (i, block) {
+                        hljs.highlightBlock(block);
+                    });
                 }
-        
-                $pre.append(code.value).addClass(code.language);
-
-			});
+            });
         }
 
     });
 }
 
+/*ASN: Rewriting document ready to just check for toc.ready, which is triggered either by the standalone toc.js script if used, or when using the legacy
+method, it will be triggered directly, as the toc will be there right away in that case*/
 $(document).ready(function(){
-	if ( $( "#toc-placeholder > .toc" ).length ) {
+    if ( $( "#toc-placeholder > .toc" ).length ) {
         $(document).trigger('toc.ready');
-	}
+    }
 });
 
 $(document).on('toc.ready', function(){
+    
+    //Get code snippets dynamically, called also on ajaxComplete:
+    getEmbedCode();
 	/*
 	 * ========================================
 	 * Enable pop overs
 	 * ========================================
 	 */
 	$("[data-toggle=popover]").popover({placement: 'top'});
-	
-	getEmbedCode();
 
 	/*
 	 * Make the next and previous link icons clickable
@@ -216,7 +228,14 @@ $(document).on('toc.ready', function(){
 	});
 
     setActiveTocline();
+/*    if ($(".additional-links").length) {
+        buildLinkList();
+    } else if ($(".section-toc").length) {
+        buildSectionToc();
+    }*/
+    
     buildSectionToc();
+	
 	updateNavigation();
 	
     if (useanchorlinks) {
@@ -379,7 +398,9 @@ function chunkedPrevNext(){
         var plusone = links[index + 1];
         if (typeof minusone !== "undefined") {
             if (minusone.classList.contains('active')) {
+                /*console.log(minusone.classList.contains('active'));*/
                 var jqueryObj = $(links[index]);
+                /*console.log(jqueryObj.attr('href'));*/
                 next = jqueryObj.attr('href');
                 nextlink.attr('href', next);
             }
@@ -387,7 +408,9 @@ function chunkedPrevNext(){
         
         if (typeof plusone !== "undefined") {
             if (plusone.classList.contains('active')) {
+                /*console.log(plusone.classList.contains('active'));*/
                 var jqueryObj = $(links[index]);
+                /*console.log(jqueryObj.attr('href'));*/
                 prev = jqueryObj.attr('href');
                 prevlink.attr('href', prev);
             }
@@ -396,6 +419,8 @@ function chunkedPrevNext(){
     
     
     if (next == '') {
+        /*ASN: If there is no next in the TOC, it means the standard transform has created a next from an internal link, which we don't want.
+        We don't need to do this for prev, because it will always be the index-en.html for that situation (first topic). */
         nextlink.remove();
     }
 }

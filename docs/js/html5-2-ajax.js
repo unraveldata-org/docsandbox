@@ -68,20 +68,16 @@ $(document).ready(function () {
         $(document).trigger('toc.ready');
     }
     
-    history.replaceState(window.location.href, null, window.location.href);
     addPopover();
-    initChecklist();
     
     //Unbind first, since it needs to be called multiple times (on load for dynamic loads)
     $(".toolbar .tool-search").off();
  	var $searchfield = $(".tool-search-form .search-field");
 	$(".toolbar .tool-search").click(function() {
 		$searchfield.fadeIn(100).focus();
-		$(".top-nav-menu").fadeOut(100);
 		});
 		$searchfield.focusout(function() {
 		$(".tool-search-form .search-field").fadeOut(100);
-		$(".top-nav-menu").fadeIn(100);
 	});
     
     $(document.body).on('click', 'a[href]', function (event) {
@@ -166,11 +162,9 @@ function loadContent(href, hash) {
      	var $searchfield = $(".tool-search-form .search-field");
     	$(".toolbar .tool-search").click(function() {
     		$searchfield.fadeIn(100).focus();
-    		$(".top-nav-menu").fadeOut(100);
     		});
     		$searchfield.focusout(function() {
     		$(".tool-search-form .search-field").fadeOut(100);
-    		$(".top-nav-menu").fadeIn(100);
     	});
         
         window.scrollTo(0, 0);
@@ -211,7 +205,6 @@ function loadContent(href, hash) {
         });
         addSearch();
         addPopover();
-        initChecklist();
         if(useanchorlinks){
             setAnchors();
         }
