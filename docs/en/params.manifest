@@ -6,12 +6,12 @@
   <param name="use.algolia.free.docsearch" select="0"/>
   <param name="publication.id" select="en-UUID-a9bdad68-2bf7-12f3-da75-65686a456b68"/>
   <param name="algolia.custom.index.name" select="unraveldata"/>
-  <param name="use.fuse.search" select="0"/>
+  <param name="use.fuse.search" select="1"/>
   <param name="use.multilingual.default.search" select="0"/>
-  <param name="custom.css.source" select="/var/www/ccms/usr/unraveldata/xsl/custom/assets/layout-63856/5d537e5b08df0.css"/>
+  <param name="custom.css.source" select="/var/www/ccms/usr/unraveldata/xsl/custom/assets/layout-63856/5d67a520a5776.css"/>
   <param name="portal.logo.filename" select="/var/www/ccms/usr/unraveldata/xsl/custom/assets/layout-63856/5c87e5197b35e.png"/>
   <param name="portal.background.filename" select="/var/www/ccms/usr/unraveldata/xsl/custom/assets/layout-63856/5c9fad83dc029.png"/>
-  <param name="portal.background.filename.out" select="/paligo/tmp/unraveldata/production-5d538f43dfed38.04454736/92535-compat-html5/out/css/image/portal-bg.jpg"/>
+  <param name="portal.background.filename.out" select="/paligo/tmp/unraveldata/production-5d6834b1c70bf8.07429990/92535-compat-html5/out/css/image/portal-bg.jpg"/>
   <param name="company.name" select="Unravel Data Inc. All rights reserved."/>
   <param name="copyright.year" select=""/>
   <param name="copyright" select=" &#xA9; 2019 Unravel Data Inc. All rights reserved. "/>

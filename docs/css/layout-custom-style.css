@@ -15,6 +15,9 @@
 
 
 
+
+
+
 @import url("cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css");
 
 
@@ -23,7 +26,7 @@ body {
     font-size: 1.5em;
     line-height: 1.5em;
     color: black;
-    background-color: #f9f9f9; /*  off white */
+    background-color: #fafafa; /*  off white */
     letter-spacing: .2px
 }
 
@@ -39,20 +42,20 @@ body {
 
 /**** set panel to page background color ****/
 .panel {
-    background-color: #f9f9f9;
+    background-color: #fafafa;
 }
 
 .panel-body {
     padding: 15px 30px;
-    background-color: #f9f9f9;
+    background-color: #fafafa;
 }
 
 .panel-default > .panel-heading {
-    background-color: #f9f9f9
+    background-color: #fafafa
 
 }
 .panel-heading {
-    background-color: #f9f9f9;
+    background-color: #fafafa;
 }
 
 /***** FEATURED CONTENT *****/
@@ -60,10 +63,10 @@ body {
 toc-count .portal-header
 .portal-search button,
 .publication-contents
-
+  
 span.toc-count {
-    background-color: #f9f9f9;
-    color: #f9f9f9;
+    background-color: #fafafa;
+    color: #fafafa;
 }
 
 /**** turn off featured content ****/
@@ -77,13 +80,23 @@ display: none;
     padding-left: 9.0%;
 }
 
+
 /**** Page titles same no matter the "depth" ****/
 #topic-content > section > .titlepage .title {
-    font-size: 1.35em;
+    font-size: 1.45em;
     font-weight: 500;
     color: rgba(65, 52, 95, .9); /* Unravel Plum  */
+    margin-bottom: .5em !important;
 }
 
+/**** Page titles same no matter the "depth" ****/
+#topic-content > section > .titlepage .subtitle {
+    font-size: 1.25em;
+    font-weight: 500;
+    color: rgba(65, 52, 95, .9); /* Unravel Plum  */
+    margin-top: 0em;
+    margin-bottom: 1.1em;
+}
 .topic-content .breadcrumb {
     font-size: 11px;
 }
@@ -92,7 +105,7 @@ display: none;
 div.sidebar-title {
     font-size: 1.35em;
     font-weight: 500;
-    margin-top: 1.85em;
+    margin-top: 1.5em;
     text-transform: none;
     color: rgba(65, 52, 95, .9); /*  Plum  */ 
     margin-bottom:.6em;
@@ -105,20 +118,16 @@ display: none;
 
 /**** toolbar, feedback panel and nav buttoms to same background as page ****/
 .toolbar {
-    background-color: #f9f9f9;
+    background-color: #fafafa;
 }
 
 div.feedback-panel {
-    background-color: #f9f9f9;
+    background-color: #fafafa;
     border-width: 0px 0px 0px 0px;
 }
-
-#header-navigation-prev.pull-left.prev.visible-lg.visible-md {
-    background-color: #f9f9f9;
-}
-
-#header-navigation-next.pull-right.next.visible-lg.visible-md {
-    background-color: #f9f9f9;
+.pager li > a, .pager li > span {
+    background-color: #fafafa;
+    border-radius: 15px;
 }
 
 /*  */
@@ -137,7 +146,7 @@ div.feedback-panel {
 
 a {
     font-weight: 500;
-    color: rgba(68, 130, 227, .80); /* Unravel Blue */
+    color: rgba(68, 130, 227, 1); /* Unravel Blue */
 }
 
 .pagination > .active > a:hover,
@@ -146,7 +155,7 @@ a:hover,
 a:focus,
 a:active {
     text-decoration: underline;
-    color: rgba(68, 130, 227, .80); /* Unravel Blue */
+    color: rgba(68, 130, 227, 1); /* Unravel Blue */
 }
 
 .cc-color-override--562569728.cc-window {
@@ -165,9 +174,6 @@ a:active {
 .center {
     text-align: center;
 }
-
-
-
 
 .portal-header .portal-search button,
 .publication-contents h4 span {
@@ -195,7 +201,7 @@ a:active {
 .caution h3.title,
 .tip h3,
 .tip h3.title {
-    font-size: 1.2em;
+    font-size: 1em;
     margin-top: 1.5em;  
 }
 
@@ -205,7 +211,7 @@ h1,
 h1.title,
 h1.bridgehead
 {
-  font-size: 1.4em;
+  font-size: 2.7em;
   font-weight: 600;
 }
 
@@ -240,7 +246,7 @@ h4.title
 
 h5.title
 {
-    font-size: 1.5em;
+    font-size: 1.55em;
     font-weight: 500;
     margin-top: 3.0em;
     text-transform: none;
@@ -259,19 +265,30 @@ h6.title
 
 h7.title
 {
-    font-size: 1.30em;
+    font-size: 1.25em;
     font-weight: 500;
     margin-top: 3.0em;
     text-transform: none;
     color: rgba(65, 52, 95, .9); /*  Plum  */
 }
-h2.bridgehead,
-h3.bridgehead,
-h4.bridgehead,
+
+h5.bridgehead
+{ 
+font-size: 1.55em;
+}
+
+h6.bridgehead { 
+font-size: 1.5em;
+}
+
+h7.bridgehead {
+    font-size: 1.60em;
+}
+    
 h5.bridgehead,
 h6.bridgehead,
 h7.bridgehead {
-    font-size: 1.35em;
+  
     font-weight: 500;
     margin-top: 1.85em;
     text-transform: none;
@@ -289,7 +306,7 @@ h5.bridgehead
 {
    font-size: 1.5em;
 }
-h26.bridgehead
+h6.bridgehead
 {
    font-size: 1.35em;
 }
@@ -323,7 +340,7 @@ h5.bridgehead.compress,
 h6.bridgehead.compress,
 h7.bridgehead.compress,
 div.sidebar-title.compress {
-    margin-top: 1em;
+    margin-top: .3em;
 }
 span.guilabel {
     color: rgba(65, 52, 95, 1); /* Unravel Plum */
@@ -331,54 +348,24 @@ span.guilabel {
 }
 
 
-
-/* */
-table {
-/*  
-    width: -moz-available;
-*/
-    margin-bottom:1.1em;
+/*  decrease space between list items */
+.listitem p {
+    margin-bottom: .425em;
 }
-/*  table header */
-th {
-    background-color: rgba(65, 52, 95, .35); /*  unravel plum */
-    color: black;
-    font-size:1.1em;
-    font-weight: 500;
-}
-
-th.tableheader {
-     background-color: rgba(65, 52, 95, .20); /*  unravel plum */
-}
-
-
-/*  decrease white space between table p */
-.informaltable td p,
-.informaltable th p,
-.table td p,
-.table th p {
-    font-size: .98em;
-    margin: 0px;
-    margin-bottom: 0px;
+/*  decrease space between list items */
+.listitem td p {
     margin-bottom: .2em;
 }
 
-/*  decrease space between list items */
-.listitem p {
-    margin-bottom: .4em;
+.nostyle {
+   list-style-type: none;
 }
-
 p,
 pre {
-    margin: 0 0 .85em;
+    margin: 0 0 .95%;
 }
 
-/*  
-code {
-    font-size: 1em;
-    padding-right: 0;
-}
-*/
+
 /*  Programisting */
 
 pre.programlisting {
@@ -387,61 +374,49 @@ pre.programlisting {
 
 /*  Screen */
 pre.screen {
-  background-color: rgba(65, 52, 95, .80); /*  unravel plum */
+   background-color: rgba(65, 52, 95, .80); /*  unravel plum */
    color: white;
 }
 
 pre.programlisting,
 pre.screen  {
-font-size: smaller;
+  font-size: .98em;
 }
 
-pre.programlisting code.varname,
-pre.screen code.varname  {
-font-size: 100%;
-} 
-/* 
-.filename,
-.userinput {
-  font-size: 98%;
-    color: inherit;
-    background-color: inherit;
-    font-weight: 600;  
-    font-style: italic;
-}
-*/
-.filename, .property, .code, .varname {
+.filename, .code, .varname, .command {
     border-radius: 0px;
     padding:0px;
+    color: black;
+    background-color: #ececec;
+    font-weight: 400;
+    font-family:courier, monospace;
+    word-break: break-word;
+    font-size: .99em;
 }
 
+
+.property{
+    border-radius: 0px;
+    padding:0px;
+    background-color: rgba(68, 130, 227, .10);
+    font-weight: 400;
+    word-break: break-word;
+    font-size: .985em;
+    color: navy;  
+}
+
+.command strong {
+    font-weight: 400;
+}
+
+
 .varname {
-/* 
     font-style: italic;
-*/
     font-weight: 500;
     color: #E97444;
     background-color: transparent;
-    font-size: 98%;
-    padding: 0;
+    font-size: 1.1em;
 }
-/* 
-code {
-    padding: 2px 4px;
-    font-size: 90%;
-    color: #000;
-    background-color: #e5e5e5;
-    border-radius: 4px;
-}
-*/
-
-.property {
-    font-size: 97%;
-    font-weight: 500;
-    color: navy; 
-    background-color: rgba(68, 130, 227, .10);
-}
-
 
 /* *** IMAGES *** */
 img {
@@ -466,10 +441,67 @@ img {
 .image-viewport img {
     margin: 0px;
 }
-.table {
-table-layout: fixed; 
+
+td a,
+td p{
+    word-break: break-word;
+    overflow-wrap: break-word; 
 }
 
+table .left {
+  position: fixed;
+  width: 200px;
+}
+
+/* */
+table {
+   margin-bottom: 1.2em;
+   table-layout: fixed;
+}
+
+/*  table header */
+th {
+    background-color: rgba(65, 52, 95, .35); /*  unravel plum */
+    color: black;
+    font-size: 1.1em;
+    font-weight: 500;
+}
+
+td a,
+td p,{
+    word-break: break-word;
+    overflow-wrap: break-word; 
+}
+
+
+.filled {
+     background-color: rgba(65, 52, 95, .075); /*  unravel plum */
+}
+
+
+/*  decrease white space between table p */
+.informaltable td p,
+.informaltable th p,
+.table td p,
+.table th p {
+    font-size: .92em;
+    margin: 0px;
+    margin-bottom: 0px;
+    margin-bottom: .2em;
+   
+}
+
+.informaltable td varname,
+.table td varname,
+.informaltable td property,
+.table td property
+{
+    font-size: .96em;
+    margin: 0px;
+    margin-bottom: 0px;
+    margin-bottom: .2em;
+   
+}
 /****  BEGIN --   added  to pin left column when scrolling table 
  Currently not working
 .table-scroll {
@@ -497,7 +529,7 @@ table-layout: fixed;
 	vertical-align:top;
 }
 .table-scroll thead, .table-scroll tfoot {
-	background:#f9f9f9;
+	background:#fafafa;
 }
 .clone {
 	position:absolute;
@@ -570,6 +602,9 @@ margin-bottom: -15px;
  */
 
 @import url("cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css");
+
+
+
 
 
 

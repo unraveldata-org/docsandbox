@@ -362,13 +362,20 @@ pre{
     display: block !important;
 }
 
-.openapi-responses .programlisting {
+.openapi-responses .programlisting, .schema-sample .programlisting {
     background-color: #2d3e53;
 }
 
-.informalexample.openapi-responses {
+.informalexample.openapi-responses, .informalexample.schema-sample {
     background-color: #2d3e53;
     border-radius: 4px;
+}
+
+/* This should really have class schema language */
+.informalexample .response-language{
+    background-color: #2d3e53;
+    padding: 10px;
+    padding-top: 20px;
 }
 
 .informalexample.openapi-samples .code {
@@ -406,4 +413,116 @@ padding-top: 5px;
 
 #content-wrapper .article {
     margin-top: 70px;
+}
+
+#toc-placeholder ul ul ul a{
+    padding-left: 50px;
+}
+
+/* Because some titles in API docs may be very long without a space */
+.title {
+    overflow-wrap: break-word;
+}
+
+/* Light highlight style for inline code samples */
+
+.inline-example .hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  color: #333!important;
+  background: #f8f8f8!important;
+}
+
+.inline-example .hljs-comment,
+.inline-example .hljs-quote {
+  color: #998!important;
+  font-style: italic;
+}
+
+.inline-example .hljs-keyword,
+.inline-example .hljs-selector-tag,
+.inline-example .hljs-subst {
+  color: #333!important;
+  font-weight: bold;
+}
+
+.inline-example .hljs-number,
+.inline-example .hljs-literal,
+.inline-example .hljs-variable,
+.inline-example .hljs-template-variable,
+.inline-example .hljs-tag .hljs-attr {
+  color: #008080!important;
+}
+
+.inline-example .hljs-string,
+.inline-example .hljs-doctag {
+  color: #d14!important;
+}
+
+.inline-example .hljs-title,
+.inline-example .hljs-section,
+.inline-example .hljs-selector-id {
+  color: #900!important;
+  font-weight: bold;
+}
+
+.inline-example .hljs-subst {
+  font-weight: normal;
+}
+
+.inline-example .hljs-type,
+.inline-example .hljs-class .hljs-title {
+  color: #458!important;
+  font-weight: bold;
+}
+
+.inline-example .hljs-tag,
+.inline-example .hljs-name,
+.inline-example .hljs-attr {
+  color: #000080!important;
+  font-weight: normal;
+}
+
+.inline-example .hljs-regexp,
+.inline-example .hljs-link {
+  color: #009926!important;
+}
+
+.inline-example .hljs-symbol,
+.inline-example .hljs-bullet {
+  color: #990073!important;
+}
+
+.inline-example .hljs-built_in,
+.inline-example .hljs-builtin-name {
+  color: #0086b3!important;
+}
+
+.inline-example .hljs-meta {
+  color: #999!important;
+  font-weight: bold;
+}
+
+.inline-example .hljs-deletion {
+  background: #fdd!important;
+}
+
+.inline-example .hljs-addition {
+  background: #dfd!important;
+}
+
+.inline-example .hljs-emphasis {
+  font-style: italic;
+}
+
+.inline-example .hljs-strong {
+  font-weight: bold;
+}
+
+/* End Light highlight style for inline code samples */
+
+
+.nav>li.no-code-switcher{
+    display:none;
 }

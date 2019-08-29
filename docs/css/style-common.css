@@ -796,3 +796,23 @@ div.animated-gif:hover .poster {
 .swagger-ui .info code {
     color: #c7254e!important;
 }
+
+/* For when selecting valign (which is not supported in HTML5) in the editor */
+td.td.align-baseline {
+    vertical-align: baseline !important;
+}
+td.td.align-top {
+    vertical-align: top !important;
+}
+td.td.align-middle {
+    vertical-align: middle !important;
+}
+td.td.align-bottom {
+    vertical-align: bottom !important;
+}
+td.td.align-text-top {
+    vertical-align: text-top !important;
+}
+td.td.align-text-bottom {
+    vertical-align: text-bottom !important;
+}
