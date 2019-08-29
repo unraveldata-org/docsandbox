@@ -18,6 +18,7 @@
 
 
 
+
 @import url("cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css");
 
 
@@ -442,9 +443,13 @@ img {
     margin: 0px;
 }
 
-td a,
-td p{
+td a
+{
     word-break: break-word;
+    overflow-wrap: break-word; 
+}
+
+.wrap {
     overflow-wrap: break-word; 
 }
 
@@ -602,6 +607,7 @@ margin-bottom: -15px;
  */
 
 @import url("cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css");
+
 
 
 
