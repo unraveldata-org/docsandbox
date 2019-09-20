@@ -18,6 +18,11 @@ $(document).on('toc.ready', function () {
     /*Swagger embed needs the nav arrow for dynamically loaded sub toc:*/
     var glyphicon = "<span class='glyphicon'></span>"; 
     $('ul.nav-site-sidebar .swagger-topic').append(glyphicon);
+    
+    $(".nav-site-sidebar a .glyphicon").click(function (e) {
+        e.preventDefault();
+        $(this).closest("li").toggleClass("opened");
+    });    
 });
 
 function syntaxHighlight() {
