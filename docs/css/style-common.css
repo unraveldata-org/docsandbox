@@ -718,6 +718,16 @@ ul.procedure ul.procedure > li::before{
         width: 100%;
         transition: 0.75s ease;
     }
+    
+    .collapsible-sidebar-nav .collapse-sidebar-nav .toolbar .breadcrumb-container {
+        display: none;
+    }
+    
+    
+    .theme1.collapsible-sidebar-nav .site-sidebar-header .navbar-toggle {
+        padding-bottom: 20px;
+    }
+    
 }
 
 @media (min-width: 1200px)
@@ -727,6 +737,11 @@ ul.procedure ul.procedure > li::before{
         transition: 0.1s ease;
     }
     
+}
+
+.collapsible-sidebar-nav .collapse-sidebar-nav .site-sidebar > .site-sidebar-search,
+.collapsible-sidebar-nav .collapse-sidebar-nav .site-sidebar > .nav-site-sidebar{
+    display: none;
 }
 /* End Collapsible menu */
 
@@ -815,4 +830,13 @@ td.td.align-text-top {
 }
 td.td.align-text-bottom {
     vertical-align: text-bottom !important;
+}
+
+/* Making sure the feedback panel works on mobile */
+#bottom-pager {
+  clear: both;
+}
+
+div.feedback-panel .btn {
+   float: none;
 }

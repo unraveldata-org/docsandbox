@@ -9,16 +9,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
 @import url("cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css");
 
 
@@ -27,7 +17,7 @@ body {
     font-size: 1.5em;
     line-height: 1.5em;
     color: black;
-    background-color: #fafafa; /*  off white */
+    background-color: #f8f8f8; /*  off white */
     letter-spacing: .2px
 }
 
@@ -43,20 +33,20 @@ body {
 
 /**** set panel to page background color ****/
 .panel {
-    background-color: #fafafa;
+    background-color: #f8f8f8;
 }
 
 .panel-body {
-    padding: 15px 30px;
-    background-color: #fafafa;
+    padding: 5px 30px;
+    background-color: #f8f8f8;
 }
 
 .panel-default > .panel-heading {
-    background-color: #fafafa
+    background-color: #f8f8f8
 
 }
 .panel-heading {
-    background-color: #fafafa;
+    background-color: #f8f8f8;
 }
 
 /***** FEATURED CONTENT *****/
@@ -66,8 +56,8 @@ toc-count .portal-header
 .publication-contents
   
 span.toc-count {
-    background-color: #fafafa;
-    color: #fafafa;
+    background-color: #f8f8f8;
+    color: #f8f8f8;
 }
 
 /**** turn off featured content ****/
@@ -119,15 +109,15 @@ display: none;
 
 /**** toolbar, feedback panel and nav buttoms to same background as page ****/
 .toolbar {
-    background-color: #fafafa;
+    background-color: #f8f8f8;
 }
 
 div.feedback-panel {
-    background-color: #fafafa;
+    background-color: #f8f8f8;
     border-width: 0px 0px 0px 0px;
 }
 .pager li > a, .pager li > span {
-    background-color: #fafafa;
+    background-color: #f8f8f8;
     border-radius: 15px;
 }
 
@@ -188,8 +178,8 @@ a:active {
 .caution,
 .tip {
     padding: 0px 0px 2px 45px;
-    margin-top: 8px;
-    margin-bottom: 8px;
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
 
 .warning h3,
@@ -202,7 +192,7 @@ a:active {
 .caution h3.title,
 .tip h3,
 .tip h3.title {
-    font-size: 1em;
+    font-size: 1.35em;
     margin-top: 1.5em;  
 }
 
@@ -225,7 +215,10 @@ h2,
 h3,
 h4,
 h5,
-h6 {
+h6 
+h7
+h8
+{
 
     font-weight: 500;
     line-height: 1.1;
@@ -239,6 +232,27 @@ h3.title,
 h4.title
 {
     font-size: 1.7em;
+    font-weight: 500;
+    margin-top: 3.0em;
+    text-transform: none;
+    color: rgba(65, 52, 95, .9); /*  Plum  */
+}
+
+
+h3.title
+
+{
+    font-size: 1.6em;
+    font-weight: 500;
+    margin-top: 3.0em;
+    text-transform: none;
+    color: rgba(65, 52, 95, .9); /*  Plum  */
+}
+
+
+h4.title
+{
+    font-size: 1.5em;
     font-weight: 500;
     margin-top: 3.0em;
     text-transform: none;
@@ -273,18 +287,7 @@ h7.title
     color: rgba(65, 52, 95, .9); /*  Plum  */
 }
 
-h5.bridgehead
-{ 
-font-size: 1.55em;
-}
 
-h6.bridgehead { 
-font-size: 1.5em;
-}
-
-h7.bridgehead {
-    font-size: 1.60em;
-}
     
 h5.bridgehead,
 h6.bridgehead,
@@ -293,7 +296,16 @@ h7.bridgehead {
     font-weight: 500;
     margin-top: 1.85em;
     text-transform: none;
-        color: rgba(65, 52, 95, .9); /*  Plum  */
+    color: rgba(65, 52, 95, .9); /*  Plum  */
+}
+
+h8.bridgehead {
+  
+    font-weight: 500;
+    font-size: 1.1em;
+     margin-top: .2em;
+    text-transform: none;
+    color: rgba(65, 52, 95, .9); /*  Plum  */
 }
 
 h2.bridgehead,
@@ -316,38 +328,74 @@ h7.bridgehead
    font-size: 1.3em;
 }
 
-h1.compress,
-h2.compress,
-h2.compress,
-h3.compress,
-h4.compress,
-h5.compress,
-h6.compress,
-h7.compress,
-h1.title.compress,
-h2.title.compress,
-h2.title.compress,
-h3.title.compress,
-h4.title.compress,
-h5.title.compress,
-h6.title.compress,
-h7.title.compress,
-h1.bridgehead.compress,
-h2.bridgehead.compress,
-h2.bridgehead.compress,
-h3.bridgehead.compress,
-h4.bridgehead.compress,
-h5.bridgehead.compress,
-h6.bridgehead.compress,
-h7.bridgehead.compress,
-div.sidebar-title.compress {
+h1.compress0,
+h2.compress0,
+h2.compress0,
+h3.compress0,
+h4.compress0,
+h5.compress0,
+h6.compress0,
+h7.compress0,
+h1.title.compress0,
+h2.title.compress0,
+h2.title.compress0,
+h3.title.compress0,
+h4.title.compress0,
+h5.title.compress0,
+h6.title.compress0,
+h7.title.compress0,
+h1.bridgehead.compress0,
+h2.bridgehead.compress0,
+h2.bridgehead.compress0,
+h3.bridgehead.compress0,
+h4.bridgehead.compress0,
+h5.bridgehead.compress0,
+h6.bridgehead.compress0,
+h7.bridgehead.compress0,
+div.sidebar-title.compress0 {
     margin-top: .3em;
+    margin-bottom: .3em;
+    font-size: 1.4em;
+}
+
+h1.compress1,
+h2.compress1,
+h2.compress1,
+h3.compress1,
+h4.compress1,
+h5.compress1,
+h6.compress1,
+h7.compress1,
+h1.title.compress1,
+h2.title.compress1,
+h2.title.compress1,
+h3.title.compress1,
+h4.title.compress1,
+h5.title.compress1,
+h6.title.compress1,
+h7.title.compress1,
+h1.bridgehead.compress1,
+h2.bridgehead.compress1,
+h2.bridgehead.compress1,
+h3.bridgehead.compress1,
+h4.bridgehead.compress1,
+h5.bridgehead.compress1,
+h6.bridgehead.compress1,
+h7.bridgehead.compress1,
+div.sidebar-title.compress0 {
+    margin-top: .05em;
+    margin-bottom: .05em;
+    font-size: 1.2em;
+}
+
+div.panel.panel-default {
+    padding-top: 0em;
+    margin-top: 0em;
 }
 span.guilabel {
     color: rgba(65, 52, 95, 1); /* Unravel Plum */
     font-weight: 700;
 }
-
 
 /*  decrease space between list items */
 .listitem p {
@@ -419,6 +467,13 @@ pre.screen  {
     font-size: 1.1em;
 }
 
+.comment {
+    font-style: italic;
+    font-weight: 500;
+    color: red;
+    font-size: .98em;
+}
+
 /* *** IMAGES *** */
 img {
     border-style: solid;
@@ -449,10 +504,10 @@ td a
     overflow-wrap: break-word; 
 }
 
-.wrap {
-    overflow-wrap: break-word; 
-}
+wrap {
 
+    overflow-wrap: break-word;
+}
 table .left {
   position: fixed;
   width: 200px;
@@ -472,13 +527,15 @@ th {
     font-weight: 500;
 }
 
-td a,
-td p,{
+td a
+{
     word-break: break-word;
-    overflow-wrap: break-word; 
+    overflow-wrap: break-word;
 }
 
-
+.wrap {
+   overflow-wrap: break-word; 
+} 
 .filled {
      background-color: rgba(65, 52, 95, .075); /*  unravel plum */
 }
@@ -534,7 +591,7 @@ td p,{
 	vertical-align:top;
 }
 .table-scroll thead, .table-scroll tfoot {
-	background:#fafafa;
+	background:#f8f8f8;
 }
 .clone {
 	position:absolute;
@@ -607,6 +664,15 @@ margin-bottom: -15px;
  */
 
 @import url("cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css");
+
+
+
+
+
+
+
+
+
 
 
 
