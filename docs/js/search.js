@@ -5,7 +5,7 @@ $(document).on('search.ready', function () {
     $(".portal-search .btn").prop("disabled", true);
 });
 
-var myHilitor;
+var searchHighlighter;
 
 function showSearch($resultcontainer){
     $resultcontainer.show();
@@ -50,8 +50,8 @@ function addSearch() {
     
     //Make sure it has the id, even if it's for 'preloaded' variant
     $resultcontainer.attr('id', 'search-container');
-    
-    myHilitor = new Hilitor("search-container");
+        
+    searchHighlighter = new Mark("ul.searchresults");
     
     $("#search-container a").click(function () {
         hideSearch($resultcontainer)
@@ -140,9 +140,10 @@ function addSearch() {
                 $ul.append(searchitem);
             }
             showSearch($resultcontainer)
-            
-            
-            myHilitor.apply(query);
+                                    
+            searchHighlighter.mark(query, {            
+                "className": "search-highlight"
+            });
         }
     });
     

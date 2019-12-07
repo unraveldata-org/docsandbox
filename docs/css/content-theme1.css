@@ -875,3 +875,17 @@ div.feedback-panel .btn:active:focus, div.feedback-panel .btn:focus {
     display: none;
 }
 
+.algolia-autocomplete .ds-dropdown-menu{
+    min-width: 0!important;
+}
+
+
+ul.searchresults .search-highlight {
+    background-color: transparent;
+    padding: 0px;
+    font-weight: bold;
+    font-style: italic;
+    color: inherit;
+}
+
+

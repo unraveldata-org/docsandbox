@@ -15,7 +15,7 @@ $(document).ready(function () {
         var a = document.createElement("a");
         li.appendChild(a);
         a.innerHTML = node.text;
-        a.className = 'topic-link';
+        a.className = node.class;
         a.href = node.url;
         if (node.children) {
             var span = document.createElement("span");

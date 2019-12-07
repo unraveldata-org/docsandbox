@@ -9,6 +9,15 @@
 
 
 
+
+
+
+
+
+
+
+
+
 @import url("cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css");
 
 
@@ -206,127 +215,62 @@ h1.bridgehead
   font-weight: 600;
 }
 
-.h2,
-.h3,
-.h4,
-.h5,
-.h6,
-h2,
-h3,
-h4,
-h5,
-h6 
-h7
-h8
+h2, .h2, h2.title, h2.bridgehead, 
+h3, .h3, h3.title, h3.bridgehead, 
+h4, .h4, h4.title, h4.bridgehead, 
+h5, .h5, h5.title, h5.bridgehead, 
+h6, .h6, h6.title, h6.bridgehead, 
+h7, .h7, h7.title, h7.bridgehead, 
+h8, .h8, h8.title, h8.bridgehead, 
+h9, .h9, h9.title, h9.bridgehead
 {
-
     font-weight: 500;
     line-height: 1.1;
     color: rgba(65, 52, 95, .9); /*  Plum  */
     text-transform: none;
+    margin-top: 3.0em;
 }
 
 
-h2.title,
-h3.title,
-h4.title
+h2, .h2, h2.title, h2.bridgehead
+{
+    font-size: 2.1em;
+}
+
+
+.h3, h3, h3.title, h3.bridgehead
+{
+    font-size: 1.9em;
+}
+
+
+.h4, h4, h4.title, h4.bridgehead
 {
     font-size: 1.7em;
-    font-weight: 500;
-    margin-top: 3.0em;
-    text-transform: none;
-    color: rgba(65, 52, 95, .9); /*  Plum  */
 }
 
-
-h3.title
-
-{
-    font-size: 1.6em;
-    font-weight: 500;
-    margin-top: 3.0em;
-    text-transform: none;
-    color: rgba(65, 52, 95, .9); /*  Plum  */
-}
-
-
-h4.title
+.h5, h5, h5.title, h5.bridgehead
 {
     font-size: 1.5em;
-    font-weight: 500;
-    margin-top: 3.0em;
-    text-transform: none;
-    color: rgba(65, 52, 95, .9); /*  Plum  */
+        margin-top: 2em;
 }
 
-h5.title
-{
-    font-size: 1.55em;
-    font-weight: 500;
-    margin-top: 3.0em;
-    text-transform: none;
-    color: rgba(65, 52, 95, .9); /*  Plum  */
-}
-
-h6.title
+.h6, h6, h6.title, h6.bridgehead
  {
-    font-size: 1.35em;
-    font-weight: 500;
-    margin-top: 3.0em;
-    text-transform: none;
-    color: rgba(65, 52, 95, .9); /*  Plum  */
+    font-size: 1.375em;
+        margin-top: 2em;
 }
 
 
-h7.title
+.h7, h7, h7.title, h7.bridgehead,
+h8, .h8, h8.title, h8.bridgehead,
+h9, .h9, h9.title, h9.bridgehead
 {
-    font-size: 1.25em;
-    font-weight: 500;
-    margin-top: 3.0em;
-    text-transform: none;
-    color: rgba(65, 52, 95, .9); /*  Plum  */
+   font-size: 1.15em;
+         margin-top: 1.5em;
 }
 
 
-    
-h5.bridgehead,
-h6.bridgehead,
-h7.bridgehead {
-  
-    font-weight: 500;
-    margin-top: 1.85em;
-    text-transform: none;
-    color: rgba(65, 52, 95, .9); /*  Plum  */
-}
-
-h8.bridgehead {
-  
-    font-weight: 500;
-    font-size: 1.1em;
-     margin-top: .2em;
-    text-transform: none;
-    color: rgba(65, 52, 95, .9); /*  Plum  */
-}
-
-h2.bridgehead,
-h3.bridgehead,
-h4.bridgehead  
-{
-   font-size: 1.7em;
-}
-
-h5.bridgehead
-{
-   font-size: 1.5em;
-}
-h6.bridgehead
-{
-   font-size: 1.35em;
-}
-h7.bridgehead
-{
-   font-size: 1.3em;
-}
 
 h1.compress0,
 h2.compress0,
@@ -336,6 +280,8 @@ h4.compress0,
 h5.compress0,
 h6.compress0,
 h7.compress0,
+h8.compress0,
+h9.compress0,
 h1.title.compress0,
 h2.title.compress0,
 h2.title.compress0,
@@ -353,6 +299,38 @@ h5.bridgehead.compress0,
 h6.bridgehead.compress0,
 h7.bridgehead.compress0,
 div.sidebar-title.compress0 {
+    margin-top: .3em;
+    margin-bottom: .3em;
+    font-size: 1.4em;
+}
+
+h1.compress,
+h2.compress,
+h2.compress,
+h3.compress,
+h4.compress,
+h5.compress,
+h6.compress,
+h7.compress,
+h8.compress,
+h9.compress,
+h1.title.compress,
+h2.title.compress,
+h2.title.compress,
+h3.title.compress,
+h4.title.compress,
+h5.title.compress,
+h6.title.compress,
+h7.title.compress,
+h1.bridgehead.compress,
+h2.bridgehead.compress,
+h2.bridgehead.compress,
+h3.bridgehead.compress,
+h4.bridgehead.compress,
+h5.bridgehead.compress,
+h6.bridgehead.compress,
+h7.bridgehead.compress,
+div.sidebar-title.compress {
     margin-top: .3em;
     margin-bottom: .3em;
     font-size: 1.4em;
@@ -382,7 +360,7 @@ h4.bridgehead.compress1,
 h5.bridgehead.compress1,
 h6.bridgehead.compress1,
 h7.bridgehead.compress1,
-div.sidebar-title.compress0 {
+div.sidebar-title.compress1 {
     margin-top: .05em;
     margin-bottom: .05em;
     font-size: 1.2em;
@@ -436,7 +414,7 @@ pre.screen  {
     border-radius: 0px;
     padding:0px;
     color: black;
-    background-color: #ececec;
+    background-color:  rgba(0, 0, 0, .055);
     font-weight: 400;
     font-family:courier, monospace;
     word-break: break-word;
@@ -444,7 +422,7 @@ pre.screen  {
 }
 
 
-.property{
+.property {
     border-radius: 0px;
     padding:0px;
     background-color: rgba(68, 130, 227, .10);
@@ -473,6 +451,13 @@ pre.screen  {
     color: red;
     font-size: .98em;
 }
+
+.larger {
+    font-weight: 600;
+    font-size: 1.12em;
+        color: rgba(65, 52, 95, .9); /*  Plum  */
+}
+
 
 /* *** IMAGES *** */
 img {
@@ -536,10 +521,10 @@ td a
 .wrap {
    overflow-wrap: break-word; 
 } 
+
 .filled {
      background-color: rgba(65, 52, 95, .075); /*  unravel plum */
 }
-
 
 /*  decrease white space between table p */
 .informaltable td p,
@@ -553,6 +538,17 @@ td a
    
 }
 
+.table td p
+{
+    margin-bottom: .1em;
+}   
+
+
+.tinier
+{
+    font-size: .7em !important;
+}   
+
 .informaltable td varname,
 .table td varname,
 .informaltable td property,
@@ -562,8 +558,30 @@ td a
     margin: 0px;
     margin-bottom: 0px;
     margin-bottom: .2em;
-   
 }
+ 
+.cat-panel-1:before {
+    content: "\f29a";  /* overview */
+}
+.cat-panel-2:before{
+    content: "\f292"; /* # - release notes */
+}
+.cat-panel-3:before{
+    content: "\f0ce"; /* matrix - compat matrix */
+}
+.cat-panel-4:before{
+    content: "\f019"; /* download - downloads */
+}
+.cat-panel-5:before{
+    content: "\f07c"; /* open folder - oss*/
+}
+.cat-panel-6:before{
+    content: "\f02d"; /* book - current documentation */
+}
+.cat-panel-7:before{
+    content: "\f1ea"; /* newsletters - newspapers */
+}
+
 /****  BEGIN --   added  to pin left column when scrolling table 
  Currently not working
 .table-scroll {
@@ -620,27 +638,8 @@ td a
 
 
  /*  first page */
-.cat-panel-1:before{
-    content: "\f29a";  /* overview */
-}
-.cat-panel-2:before{
-    content: "\f292"; /* # - release notes */
-}
-.cat-panel-3:before{
-    content: "\f0ce"; /* matrix - compat matrix */
-}
-.cat-panel-4:before{
-    content: "\f019"; /* download - downloads */
-}
-.cat-panel-5:before{
-    content: "\f07c"; /* open folder - oss*/
-}
-.cat-panel-6:before{
-    content: "\f02d"; /* book - current documentation */
-}
-.cat-panel-7:before{
-    content: "\f1ea"; /* newsletters - newspapers */
-}
+ 
+
 
 
 /* Algolia DocSearch 
@@ -664,6 +663,15 @@ margin-bottom: -15px;
  */
 
 @import url("cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css");
+
+
+
+
+
+
+
+
+
 
 
 

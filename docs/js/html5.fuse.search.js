@@ -65,7 +65,8 @@ function init(){
         });
     }
 }
-var myHilitor;
+
+var searchHighlighter;
 
 var $resultcontainer;
 
@@ -96,7 +97,7 @@ function addSearch() {
     //Make sure it has the id, even if it's for 'preloaded' variant
     $resultcontainer.attr('id', 'search-container');
     
-    myHilitor = new Hilitor('search-container');
+    searchHighlighter = new Mark("ul.searchresults");    
     
     $resultcontainer.click(function () {
         hideSearch($resultcontainer);
@@ -208,8 +209,10 @@ function search(e, searchfield) {
             }
             
             showSearch($resultcontainer);
-            
-            myHilitor.apply(query);
+                        
+            searchHighlighter.mark(query, {            
+                "className": "search-highlight"
+            });
         }
     }
 

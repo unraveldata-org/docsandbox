@@ -4,14 +4,14 @@
   <param name="html5.content.theme" select="2"/>
   <param name="use.algolia.search" select="0"/>
   <param name="use.algolia.free.docsearch" select="0"/>
-  <param name="publication.id" select="en-UUID-c2dfaf26-20e6-e9d5-f4af-8417fd352360"/>
+  <param name="publication.id" select="en-UUID-15c53051-a2ba-c86d-361c-e4c7e025d052"/>
   <param name="algolia.custom.index.name" select="unraveldata"/>
   <param name="use.fuse.search" select="1"/>
   <param name="use.multilingual.default.search" select="0"/>
-  <param name="custom.css.source" select="/var/www/ccms/usr/unraveldata/xsl/custom/assets/layout-63856/5d8b335f2752e.css"/>
+  <param name="custom.css.source" select="/var/www/ccms/usr/unraveldata/xsl/custom/assets/layout-63856/5dbb26f796ac4.css"/>
   <param name="portal.logo.filename" select="/var/www/ccms/usr/unraveldata/xsl/custom/assets/layout-63856/5c87e5197b35e.png"/>
   <param name="portal.background.filename" select="/var/www/ccms/usr/unraveldata/xsl/custom/assets/layout-63856/5c9fad83dc029.png"/>
-  <param name="portal.background.filename.out" select="/paligo/tmp/unraveldata/production-5d956a1727c129.85503043/98487-CompMatrix-html5/out/css/image/portal-bg.jpg"/>
+  <param name="portal.background.filename.out" select="/paligo/tmp/unraveldata/production-5deb606acdeca9.74650839/106665-home-Test-html5/out/css/image/portal-bg.jpg"/>
   <param name="company.name" select="Unravel Data Inc. All rights reserved."/>
   <param name="copyright.year" select=""/>
   <param name="copyright" select=" &#xA9; 2019 Unravel Data Inc. All rights reserved. "/>
@@ -41,7 +41,7 @@
   <param name="feedback.toggle" select="no-button"/>
   <param name="bootstrap.version" select="340"/>
   <param name="layout.custom.style.persistent.name" select="1"/>
-  <param name="open.category.first.topic" select="0"/>
+  <param name="open.category.first.topic" select="1"/>
   <param name="elastic.site.search" select=""/>
   <param name="other.custom.search" select="0"/>
   <param name="use.page.toc" select="1"/>
@@ -60,7 +60,8 @@
   <param name="versions.file" select=""/>
   <param name="fuse.threshold" select="0.3"/>
   <param name="use.print.icon" select="0"/>
-  <param name="portal.publication.title" select="CompMatrix"/>
+  <param name="portal.publication.title" select="home-Test"/>
   <param name="collapsible.toc" select="1"/>
   <param name="focus.on.current.toc.section" select="1"/>
+  <param name="use.resource.version.suffix" select="0"/>
 </params>

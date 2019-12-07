@@ -714,6 +714,15 @@ p.searchresultsnippet, p.search-result-url, .search-result-breadcrumbs{
     list-style-type: none;
 }
 
+
+ul.searchresults .search-highlight {
+    background-color: transparent;
+    padding: 0px;
+    font-weight: bold;
+    font-style: italic;
+    color: inherit;
+}
+
 /*.keycap-graphical {
     display: inline-block;
     border: 1px solid #ccc;

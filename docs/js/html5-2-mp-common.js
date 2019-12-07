@@ -1,6 +1,6 @@
 $(document).ready(function () {
     //Get code snippets dynamically, called also in LoadContent for ajax:
-    getEmbedCode();
+    getEmbedCode();    
     
     /*Collapse sidebar:*/
     $(".collapsible-sidebar-nav .site-sidebar-header .navbar-toggle").click(function() {
@@ -14,8 +14,8 @@ $(document).ready(function () {
     });
 
     /*Accordion glyphs:*/
-    $(document.body).on('click', '.panel-heading', function (event) {
-        $(this).toggleClass('active');
+    $(document.body).on('click', '.panel-heading .titlepage', function (event) {
+        $(this).parent().toggleClass('active');
     });
     
     $(document.body).on('click', '.feedback-panel .btn', function (e) {

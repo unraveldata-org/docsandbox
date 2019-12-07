@@ -229,6 +229,7 @@ function loadContent(href, hash) {
         mapVersionPage();
         //Get dynamic code snippets from URL
         getEmbedCode();
+        
     });
 }
 
