@@ -5,7 +5,7 @@ info:
   title: Unravel Rest API
   contact:
     name: API Doc
-    url: https://docs.unraveldata.com/en/api.html
+    url: https://docs.unraveldata.com/unravel-v46x/en/api.html
 basePath: /api/v1/
 security:
     - ApiKeyAuth: []
@@ -42,6 +42,14 @@ tags:
     description : Access to the CloudReports endpoints
   - name : ScheduledReports
     description : Access to the ScheduledReports
+  - name : logstash
+    description : Access to Logstash endpoints
+  - name : elasticsearch
+    description : Access to Elasticsearch endpoints
+  - name : kibana
+    description : Access to Kibana endpoints
+  - name : kafka
+    description : Access to Kafka endpoints
  
 nonBodyParameters:
   clusterName:
@@ -131,8 +139,22 @@ nonBodyParameters:
     format: "date"
     pattern: "YYYY-MM-DD"
     required: false 
+  lt:
+    name: lte
+    in: query
+    type: string
+    description: "ending date of date range. Format YYYY-MM-DD"
+    format: "date"
+    pattern: "YYYY-MM-DD"
+    required: false 
   limit:
     name: limit
+    in: query
+    type: int
+    required: false
+  page:
+    name: page
+    description: "page number for pagination"
     in: query
     type: int
     required: false
@@ -187,7 +209,20 @@ nonBodyParameters:
     required: true
     enum: ['138','137','135','134','115','125','126']
     description: "Metric Type of applications.138=> vmRss,137 => availableMemory,135 => systemCpuLoad,134 => processCpuLoad,115=> gcLoad,125=> maxHeap,126=> usedHeap"
-
+  appTypes:
+    name: appTypes
+    in: query
+    type: string
+    description: "Type of applications"
+    required: false
+    enum: ['mr','hive','spark','impala','tez','cascading','pig']
+  appStatus:
+    name: appStatus
+    in: query
+    type: string
+    description: "Status of applications. S => Success, F=>Failed, K=>Killed, R=>Running, W=>Waiting, P=>Pending, U=>Unkown"
+    required: false
+    enum: ["S","F","K","R","W","P","U"]
   autoaction_status:
     name: enabled
     in: query
@@ -329,7 +364,112 @@ nonBodyParameters:
     name: queue
     in: query
     type: string
-    required: true      
+    required: true 
+  overview-metrics:
+    name: metrics
+    in: query
+    type: array
+    items:
+      type: string
+      enum: ['kpi_events_in','kpi_events_out']     
+    required: true
+  node:
+    name: node
+    in: path
+    type: string
+    required: true
+  node-metrics:
+    name: metrics
+    in: query
+    type: array
+    items:
+      type: string
+      enum: ['kpi_events_in','kpi_events_out','jvm_heap_max_in_bytes','jvm_heap_used_in_bytes','cpu_percent','cpu_load_average_1m','cpu_load_average_5m','cpu_load_average_15m']   
+    required: true
+  pipeline:
+    name: pipeline
+    in: path
+    type: string
+    required: true
+  pipeline-metrics:
+    name:  metrics
+    in: query
+    type: array
+    items:
+      type: string
+      enum: ['pipeline_num_events_in','pipeline_num_events_out']   
+    required: true
+  cluster:
+    name: cluster
+    in: path
+    type: string
+    required: true
+  elasticsearch-metric :
+    name: prefix
+    in: query
+    type: int
+    required: true
+    enum: ['search_rate','search_latency','indexing_rate','indexing_latency']
+  elasticsearch-node-metric :
+    name: prefix
+    in: query
+    type: int
+    required: true
+    enum: ['jvm_mem_heap_used_in_byte','indices_segments_memory_in_bytes','os_cpu_percent','heap_percent','indices_segments_count','search_latency','indexing_latency','indices_docs_count']
+  node-elastic:
+    name: node
+    in: query
+    type: string
+    required: true
+  elasticsearch-indices-metric :
+    name: prefix
+    in: query
+    type: int
+    required: true
+    enum: ['search_rate','indexing_rate','indexing_latency','segments_count','fetch_latency','fetch_rate','flush_latency','flush_rate']
+  index:
+    name: index
+    in: query
+    type: string
+    required: false
+  kibana-metric :
+    name: prefix
+    in: query
+    type: int
+    required: true
+    enum: ['metrics_process_memory_heap_used_in_bytes','metrics_requests_total','metrics_requests_disconnects','metrics_concurrent_connections']
+  interval:
+    name: interval
+    in: query
+    type: int
+    required: false
+    enum: ['1m','5m','10m','30m','1h','1d','1w']
+  kafka_metrics:
+    name: prefix
+    in: query
+    type: int
+    required: true
+    enum: ['BytesInPerSec','BytesOutPerSec','MessagesInPerSec','TotalFetchRequestsPerSec','UnderReplicatedPartitions','ActiveControllerCount','RequestHandlerAvgIdlePercent-OneMinuteRate','PartitionCount-Value','LeaderCount-Value','OfflinePartitionsCount','TotalTimeMs_Fetch-99thPercentile','RequestsPerSec_Fetch-OneMinuteRate','RequestsPerSec_Produce-OneMinuteRate','PurgatorySize_Produce-Value','PurgatorySize_Fetch-Value','LogFlushRateAndTimeMs-99thPercentile']
+  cluster_id:
+    name: cluster_id
+    in: query
+    type: int
+    required: true
+  broker:
+    name: broker
+    in: query
+    type: int
+    required: true
+  kafka_topic_metrics:
+    name: prefix
+    in: query
+    type: string
+    required: true
+  kafka_metric_pattern:
+    name: metric_pattern
+    in: query
+    type: int
+    required: true
 schemes: ["http", "https"]
 paths:
   /signIn:
@@ -362,6 +502,9 @@ paths:
     get:
       tags:
         - operation
+      parameters:
+        - $ref: '#/nonBodyParameters/start_time'
+        - $ref: '#/nonBodyParameters/end_time'
       produces:
         - application/json
       responses:
@@ -378,6 +521,9 @@ paths:
     get:
       tags:
         - operation
+      parameters:
+        - $ref: '#/nonBodyParameters/start_time'
+        - $ref: '#/nonBodyParameters/end_time'
       produces:
         - application/json
       responses:
@@ -641,6 +787,21 @@ paths:
             type: array
             items:
               type: string
+  /apps/{app_id}/tags:
+    get:
+      tags:
+        - apps
+      parameters:
+        - $ref: '#/nonBodyParameters/app_id'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns tags of an application
+          schema:
+            type: array
+            items:
+              type: string
 
   /yarn_rm/kill_app:
     get:
@@ -893,7 +1054,7 @@ paths:
             type: array
             items:
               type: string
-  /common/app/{app_id}/errors:
+  /common/app/{app_id}/errors?apiMode=1:
     get:
       tags:
         - Applications
@@ -919,6 +1080,25 @@ paths:
       responses:
         '200':
           description: Returns logs of an application
+          schema:
+            type: array
+            items:
+              type: string
+  /common/app/details:
+    get:
+      tags:
+        - Applications
+      parameters:
+        - $ref: '#/nonBodyParameters/from'
+        - $ref: '#/nonBodyParameters/to'
+        - $ref: '#/nonBodyParameters/appTypes'
+        - $ref: '#/nonBodyParameters/appStatus'
+        - $ref: '#/nonBodyParameters/page'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns consolidated data  for an application
           schema:
             type: array
             items:
@@ -1454,6 +1634,352 @@ paths:
             type: array
             items:
               type: string
+  /logstash/kpis:
+    get:
+      tags:
+      - logstash
+      parameters:
+        - $ref: '#/nonBodyParameters/start_time'
+        - $ref: '#/nonBodyParameters/end_time'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns  the logstash kpis 
+          schema:
+            type: array
+            items:
+              type: string
+  /logstash/nodes/list:
+    get:
+      tags:
+      - logstash
+      parameters:
+        - $ref: '#/nonBodyParameters/start_time'
+        - $ref: '#/nonBodyParameters/end_time'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns  the nodes list and their metrics
+          schema:
+            type: array
+            items:
+              type: string
+  /logstash/nodes/kpis:
+    get:
+      tags:
+      - logstash
+      parameters:
+        - $ref: '#/nonBodyParameters/start_time'
+        - $ref: '#/nonBodyParameters/end_time'
+        - $ref: '#/nonBodyParameters/overview-metrics'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns overall kpis(avg) of all nodes in logstash
+          schema:
+            type: array
+            items:
+              type: string
+  /logstash/nodes/{node}/kpis:
+    get:
+      tags:
+      - logstash
+      parameters:
+        - $ref: '#/nonBodyParameters/start_time'
+        - $ref: '#/nonBodyParameters/end_time'
+        - $ref: '#/nonBodyParameters/node-metrics'
+        - $ref: '#/nonBodyParameters/node'
+
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns the kpis of a particular node 
+          schema:
+            type: array
+            items:
+              type: string
+  /logstash/pipelines/list:
+    get:
+      tags:
+      - logstash
+      parameters:
+        - $ref: '#/nonBodyParameters/start_time'
+        - $ref: '#/nonBodyParameters/end_time'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns the list of pipelines and their metrics
+          schema:
+            type: array
+            items:
+              type: string
+  /logstash/pipelines/kpis:
+    get:
+      tags:
+      - logstash
+      parameters:
+        - $ref: '#/nonBodyParameters/start_time'
+        - $ref: '#/nonBodyParameters/end_time'
+        - $ref: '#/nonBodyParameters/pipeline-metrics'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns overall kpis(avg) of all pipeline
+          schema:
+            type: array
+            items:
+              type: string
+  /logstash/pipelines/{pipeline}/kpis:
+    get:
+      tags:
+      - logstash
+      parameters:
+        - $ref: '#/nonBodyParameters/start_time'
+        - $ref: '#/nonBodyParameters/end_time'
+        - $ref: '#/nonBodyParameters/pipeline-metrics'
+        - $ref: '#/nonBodyParameters/pipeline'
+
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns the kpis of a particular pipeline
+          schema:
+            type: array
+            items:
+              type: string
+  /elasticsearch/clusters/metrics:
+    get:
+      tags:
+      - elasticsearch
+      parameters:
+        - $ref: '#/nonBodyParameters/start_time'
+        - $ref: '#/nonBodyParameters/end_time'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description:  Returns  the  elasticsearch cluster level kpi metrics 
+          schema:
+            type: array
+  /elasticsearch/{cluster}/nodes:
+    get:
+      tags:
+      - elasticsearch
+      parameters:
+        - $ref: '#/nonBodyParameters/start_time'
+        - $ref: '#/nonBodyParameters/end_time'
+        - $ref: '#/nonBodyParameters/cluster'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns node list and their metrics of a elasticsearch cluster
+          schema:
+            type: array
+  /elasticsearch/{cluster}/kpi_cluster:
+    get:
+      tags:
+      - elasticsearch
+      parameters:
+        - $ref: '#/nonBodyParameters/start_time'
+        - $ref: '#/nonBodyParameters/end_time'
+        - $ref: '#/nonBodyParameters/cluster'
+        - $ref: '#/nonBodyParameters/elasticsearch-metric'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns cluster level metric value of  a particular metrics
+          schema:
+            type: array
+  /elasticsearch/{cluster}/kpi_node:
+    get:
+      tags:
+      - elasticsearch
+      parameters:
+        - $ref: '#/nonBodyParameters/start_time'
+        - $ref: '#/nonBodyParameters/end_time'
+        - $ref: '#/nonBodyParameters/cluster'
+        - $ref: '#/nonBodyParameters/elasticsearch-node-metric'
+        - $ref: '#/nonBodyParameters/node-elastic'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns cluster level  metric values of a  particular nodes 
+          schema:
+            type: array
+  /elasticsearch/{cluster}/index:
+    get:
+      tags:
+      - elasticsearch
+      parameters:
+        - $ref: '#/nonBodyParameters/start_time'
+        - $ref: '#/nonBodyParameters/end_time'
+        - $ref: '#/nonBodyParameters/cluster'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns  indices and their metrics of a elastic search cluster
+          schema:
+            type: array
+  /elasticsearch/{cluster}/kpi_index:
+    get:
+      tags:
+      - elasticsearch
+      parameters:
+        - $ref: '#/nonBodyParameters/start_time'
+        - $ref: '#/nonBodyParameters/end_time'
+        - $ref: '#/nonBodyParameters/cluster'
+        - $ref: '#/nonBodyParameters/elasticsearch-indices-metric'
+        - $ref: '#/nonBodyParameters/index'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns metric values of  the indices
+          schema:
+            type: array
+  /kibana/clusters/metrics:
+     get:
+      tags:
+      - kibana
+      parameters:
+        - $ref: '#/nonBodyParameters/start_time'
+        - $ref: '#/nonBodyParameters/end_time'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description:  Returns  the  kibana cluster level kpi metrics 
+          schema:
+            type: array
+  /kibana/{cluster}/kpi_cluster:
+    get:
+      tags:
+      - kibana
+      parameters:
+        - $ref: '#/nonBodyParameters/start_time'
+        - $ref: '#/nonBodyParameters/end_time'
+        - $ref: '#/nonBodyParameters/cluster'
+        - $ref: '#/nonBodyParameters/kibana-metric'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description:  Returns  the  kibana cluster level metrics values
+          schema:
+            type: array
+
+  /kafka/clusters:
+    get:
+      tags:
+      - kafka
+      parameters:
+        - $ref: '#/nonBodyParameters/gte'
+        - $ref: '#/nonBodyParameters/lt'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns  the  list of kafka cluster and their metrics
+          schema:
+            type: array
+
+  /kafka/{cluster}/kpi_clusters:
+    get:
+      tags:
+      - kafka
+      parameters:
+        - $ref: '#/nonBodyParameters/start_time'
+        - $ref: '#/nonBodyParameters/end_time'
+        - $ref: '#/nonBodyParameters/interval'
+        - $ref: '#/nonBodyParameters/cluster'
+        - $ref: '#/nonBodyParameters/kafka_metrics'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns  the KPIs for a given Kafka cluster.
+          schema:
+            type: array
+  /kafka/brokers:
+    get:
+      tags:
+      - kafka
+      parameters:
+        - $ref: '#/nonBodyParameters/start_time'
+        - $ref: '#/nonBodyParameters/end_time'
+        - $ref: '#/nonBodyParameters/cluster_id'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns list of kafka brokers
+          schema:
+            type: array
+  /kafka/{cluster}/kpi:
+    get:
+      tags:
+      - kafka
+      parameters:
+        - $ref: '#/nonBodyParameters/start_time'
+        - $ref: '#/nonBodyParameters/end_time'
+        - $ref: '#/nonBodyParameters/interval'
+        - $ref: '#/nonBodyParameters/cluster'
+        - $ref: '#/nonBodyParameters/broker'
+        - $ref: '#/nonBodyParameters/kafka_metrics'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns the KPIs for a given Kafka broker.
+          schema:
+            type: array
+  /kafka/{cluster}/kpi_topics:
+    get:
+      tags:
+      - kafka
+      parameters:
+        - $ref: '#/nonBodyParameters/start_time'
+        - $ref: '#/nonBodyParameters/end_time'
+        - $ref: '#/nonBodyParameters/interval'
+        - $ref: '#/nonBodyParameters/cluster'
+        - $ref: '#/nonBodyParameters/kafka_topic_metrics'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns KPIs for the Kafka topics 
+          schema:
+            type: array
+  /kafka/topics/partions/ts:
+    get:
+      tags:
+      - kafka
+      parameters:
+        - $ref: '#/nonBodyParameters/start_time'
+        - $ref: '#/nonBodyParameters/end_time'
+        - $ref: '#/nonBodyParameters/interval'
+        - $ref: '#/nonBodyParameters/cluster_id'
+        - $ref: '#/nonBodyParameters/kafka_metric_pattern'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns partition details about a given topic
+          schema:
+            type: array
+
+          
 securityDefinitions:
   ApiKeyAuth:
     type: apiKey
