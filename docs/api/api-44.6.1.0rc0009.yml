@@ -1,0 +1,2137 @@
+swagger: '2.0'
+info:
+  description: Unravel rest endpoints
+  version: 1.0.0
+  title: Unravel Rest Api
+  contact:
+    name: Api Doc
+    url: https://unraveldata.atlassian.net/wiki/spaces/UN44/pages/599851245/REST+API
+basePath: /api/v1/
+security:
+    - ApiKeyAuth: []
+tags:
+  - name: operation
+    description: All operational related endpoints 
+  - name: apps
+    description: All app related endpoints
+  - name: workflows
+    description: Access to workflows
+  - name: auto-actions
+    description: Access to auto-actions
+  - name: Chargeback
+    description: Access to chargeback report 
+  - name: Data Insights
+    description: Access to data insights 
+  - name : Applications
+    description: Access to application details 
+  - name : Job
+    description: Job related endpoints
+  - name : Forcasting
+    description : Access to the capacity forecasting endpoints
+  - name : Smallfiles
+    description : Access to the small files endpoints
+  - name : File-Reports
+    description : Access to the File Reports endpoints
+  - name : TopX
+    description : Access to the Top X endpoints
+  - name : ClusterOptimization
+    description : Access to the ClusterOptimization endpoints
+  - name : QueueAnalysis
+    description : Access to the QueueAnalysis endpoints
+  - name : CloudReports
+    description : Access to the CloudReports endpoints
+  - name : ScheduledReports
+    description : Access to the ScheduledReports
+  - name : logstash
+    description : Access to Logstash endpoints
+  - name : elasticsearch
+    description : Access to Elasticsearch endpoints
+  - name : kibana
+    description : Access to Kibana endpoints
+  - name : kafka
+    description : Access to Kafka endpoints
+ 
+nonBodyParameters:
+  clusterName:
+    name: clusterName
+    in: path
+    type: string
+    required: false
+  from:
+    name: from
+    in: query
+    type: string
+    description: "Starting date of date range. Format YYYY-MM-DD"
+    format: "date"
+    pattern: "YYYY-MM-DD"
+    required: false
+  to:
+    name: to
+    in: query
+    type: string
+    description: "ending date of date range. Format YYYY-MM-DD"
+    format: "date"
+    pattern: "YYYY-MM-DD"
+    required: false
+  start_time:
+    name: start_time
+    in: query
+    type: string
+    description: "Starting date of date range. Format YYYY-MM-DD"
+    format: "date"
+    pattern: "YYYY-MM-DD"
+    required: false
+  end_time:
+    name: end_time
+    in: query
+    type: string
+    description: "ending date of date range. Format YYYY-MM-DD"
+    format: "date"
+    pattern: "YYYY-MM-DD"
+    required: false
+  start_time_utc:
+    name: start_time
+    in: query
+    type: string
+    description: "Starting date of date range. Format YYYY-MM-DDTHH:mm:ssZ"
+    format: "date"
+    pattern: "YYYY-MM-DDTHH:mm:ssZ"
+    required: true
+  end_time_utc:
+    name: end_time
+    in: query
+    type: string
+    description: "ending date of date range. Format YYYY-MM-DDTHH:mm:ssZ"
+    format: "date"
+    pattern: "YYYY-MM-DDTHH:mm:ssZ"
+    required: true
+  start:
+    name: start
+    in: query
+    type: string
+    description: "Starting date of date range in second"
+    required: true
+  end:
+    name: end
+    in: query
+    type: string
+    description: "ending date of date range in second"
+    required: true 
+  num_days_predict:
+    name: num_days_predict
+    in: query
+    type: string
+    description: "number of days predict"
+    required: true 
+  gte:
+    name: gte
+    in: query
+    type: string
+    description: "Starting date of date range. Format YYYY-MM-DD"
+    format: "date"
+    pattern: "YYYY-MM-DD"
+    required: false
+  lte:
+    name: lte
+    in: query
+    type: string
+    description: "ending date of date range. Format YYYY-MM-DD"
+    format: "date"
+    pattern: "YYYY-MM-DD"
+    required: false 
+  lt:
+    name: lte
+    in: query
+    type: string
+    description: "ending date of date range. Format YYYY-MM-DD"
+    format: "date"
+    pattern: "YYYY-MM-DD"
+    required: false 
+  limit:
+    name: limit
+    in: query
+    type: int
+    required: false
+  page:
+    name: page
+    description: "page number for pagination"
+    in: query
+    type: int
+    required: false
+  numDays:
+    name: numDays
+    in: query
+    type: int
+    required: true
+  entity_id:
+    name: entity_id
+    in: query
+    type: string
+    required: true
+  app_id:
+    name: app_id
+    in: path
+    type: string
+    required: true
+  appId:
+    name: appId
+    in: query
+    type: string
+    required: false
+  user:
+    name: user
+    in: query
+    type: string
+    required: false
+  appType:
+    name: appType
+    in: query
+    type: int
+    required: false
+    enum: ['MR','SPARK','IMPALA','TEZ','WORKFLOWS']
+  groupJobs:
+    in: query
+    name: groupBy
+    schema:
+      type: string
+      default: 'user'
+  entity_type:
+    name: entity_type
+    in: query
+    type: int
+    required: false
+    enum: [0, 1, 2,16]
+    description: "Type of applications. 0=> MR, 1 => HIVE , 2 => SPARK,16 =>IMPALA"
+  metric_id:
+    name: metric_id
+    in: query
+    type: int
+    required: true
+    enum: ['138','137','135','134','115','125','126']
+    description: "Metric Type of applications.138=> vmRss,137 => availableMemory,135 => systemCpuLoad,134 => processCpuLoad,115=> gcLoad,125=> maxHeap,126=> usedHeap"
+  appTypes:
+    name: appTypes
+    in: query
+    type: string
+    description: "Type of applications"
+    required: false
+    enum: ['mr','hive','spark','impala','tez','cascading','pig']
+  appStatus:
+    name: appStatus
+    in: query
+    type: string
+    description: "Status of applications. S => Success, F=>Failed, K=>Killed, R=>Running, W=>Waiting, P=>Pending, U=>Unkown"
+    required: false
+    enum: ["S","F","K","R","W","P","U"]
+  autoaction_status:
+    name: enabled
+    in: query
+    type: string
+    required: false
+    enum: ['true','false']
+    default: 'true'
+    description: "Status of autoactions. true=> Active,false=> Inactive,-- => Inactive"
+  search_filters:
+    name: search_filters
+    in: body
+    type: object
+    required: false
+  avg_size_threshold:
+    name: avg_size_threshold
+    in: query
+    description: "file size thershold in bytes"
+    type: string
+    required: true
+  drill_down_subdirs_flag:
+    name: drill_down_subdirs_flag
+    in: query
+    description: "need to drill down subdirectories? (true or false)"
+    type: string
+    required: false
+  num_files_threshold:
+    name: num_files_threshold
+    in: query
+    description: "Number of files thershold"
+    type: string
+    required: true
+  top_n_small_files:
+    name: top_n_small_files
+    in: query
+    description: "Top N small files"
+    type: string
+    required: true
+  use_avg_file_size_flag:
+    name: use_avg_file_size_flag
+    in: query
+    description: "Need to use average file size?(true or false)"
+    type: string
+    required: false
+  max_parent_dir_depth:
+    name: max_parent_dir_depth
+    in: query
+    description: "Max parent directories depth"
+    type: string
+    required: false
+  min_parent_dir_depth:
+    name: min_parent_dir_depth
+    in: query
+    description: "Min parent directories depth"
+    type: string
+    required: false
+  report_instance_id:
+    name: report_instance_id
+    in: query
+    description: "report instance id"
+    type: string
+    required: 
+  report_id:
+    name: report_id
+    in: query
+    description: "report  id"
+    type: string
+    required: true
+  author:
+    name: author
+    in: query
+    description: "author"
+    type: string
+    required: false
+  end_day:
+    name: end_day
+    in: query
+    description: "end day"
+    type: number
+    required: true
+  end_month:
+    name: end_month
+    in: query
+    description: "end month"
+    type: number
+    required: true
+  end_year:
+    name: end_year
+    in: query
+    description: "end year"
+    type: number
+    required: true
+  start_day:
+    name: start_day
+    in: query
+    description: "start day"
+    type: number
+    required: true
+  start_month:
+    name: start_month
+    in: query
+    description: "start month"
+    type: number
+    required: true
+  start_year:
+    name: start_year
+    in: query
+    description: "start year"
+    type: number
+    required: true
+  queue_name:
+    name: queue_name
+    in: query
+    description: "queue name"
+    type: string
+    required: true
+  cloud_provider:
+    name: cloud_provider
+    in: query
+    description: "cloud provider"
+    type: string
+    required: true
+  instance_type:
+    name: instance_type
+    in: query
+    description: "instance type"
+    type: string
+    required: false
+  clusterid:
+    name: clusterid
+    in: query
+    type: string
+    required: true
+  appid:
+    name: appid
+    in: query
+    type: string
+    required: true
+  queue:
+    name: queue
+    in: query
+    type: string
+    required: true 
+  overview-metrics:
+    name: metrics
+    in: query
+    type: array
+    items:
+      type: string
+      enum: ['kpi_events_in','kpi_events_out']     
+    required: true
+  node:
+    name: node
+    in: path
+    type: string
+    required: true
+  node-metrics:
+    name: metrics
+    in: query
+    type: array
+    items:
+      type: string
+      enum: ['kpi_events_in','kpi_events_out','jvm_heap_max_in_bytes','jvm_heap_used_in_bytes','cpu_percent','cpu_load_average_1m','cpu_load_average_5m','cpu_load_average_15m']   
+    required: true
+  pipeline:
+    name: pipeline
+    in: path
+    type: string
+    required: true
+  pipeline-metrics:
+    name:  metrics
+    in: query
+    type: array
+    items:
+      type: string
+      enum: ['pipeline_num_events_in','pipeline_num_events_out']   
+    required: true
+  cluster:
+    name: cluster
+    in: path
+    type: string
+    required: true
+  elasticsearch-metric :
+    name: prefix
+    in: query
+    type: int
+    required: true
+    enum: ['search_rate','search_latency','indexing_rate','indexing_latency']
+  elasticsearch-node-metric :
+    name: prefix
+    in: query
+    type: int
+    required: true
+    enum: ['jvm_mem_heap_used_in_byte','indices_segments_memory_in_bytes','os_cpu_percent','heap_percent','indices_segments_count','search_latency','indexing_latency','indices_docs_count']
+  node-elastic:
+    name: node
+    in: query
+    type: string
+    required: true
+  elasticsearch-indices-metric :
+    name: prefix
+    in: query
+    type: int
+    required: true
+    enum: ['search_rate','indexing_rate','indexing_latency','segments_count','fetch_latency','fetch_rate','flush_latency','flush_rate']
+  index:
+    name: index
+    in: query
+    type: string
+    required: false
+  kibana-metric :
+    name: prefix
+    in: query
+    type: int
+    required: true
+    enum: ['metrics_process_memory_heap_used_in_bytes','metrics_requests_total','metrics_requests_disconnects','metrics_concurrent_connections']
+  interval:
+    name: interval
+    in: query
+    type: int
+    required: false
+    enum: ['1m','5m','10m','30m','1h','1d','1w']
+  kafka_metrics:
+    name: prefix
+    in: query
+    type: int
+    required: true
+    enum: ['BytesInPerSec','BytesOutPerSec','MessagesInPerSec','TotalFetchRequestsPerSec','UnderReplicatedPartitions','ActiveControllerCount','RequestHandlerAvgIdlePercent-OneMinuteRate','PartitionCount-Value','LeaderCount-Value','OfflinePartitionsCount','TotalTimeMs_Fetch-99thPercentile','RequestsPerSec_Fetch-OneMinuteRate','RequestsPerSec_Produce-OneMinuteRate','PurgatorySize_Produce-Value','PurgatorySize_Fetch-Value','LogFlushRateAndTimeMs-99thPercentile']
+  cluster_id:
+    name: cluster_id
+    in: query
+    type: int
+    required: true
+  broker:
+    name: broker
+    in: query
+    type: int
+    required: true
+  kafka_topic_metrics:
+    name: prefix
+    in: query
+    type: string
+    required: true
+  kafka_metric_pattern:
+    name: metric_pattern
+    in: query
+    type: int
+    required: true
+schemes: ["http", "https"]
+paths:
+  /signIn:
+    post:
+      security: []   # No security
+      produces:
+        - application/json
+      parameters:
+        - in: formData
+          name: username
+          type: string
+        - in: formData
+          name: password
+          type: string
+          format : password
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              token:
+                type: string
+                description: Auth Token
+      externalDocs:
+        url: 'https://unraveldata.atlassian.net/wiki/x/zQC9Iw'
+
+
+  /clusters:
+    get:
+      tags:
+        - operation
+      parameters:
+        - $ref: '#/nonBodyParameters/start_time'
+        - $ref: '#/nonBodyParameters/end_time'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns list of clusters
+          schema:
+            type: array
+            items:
+              type: string
+              description: "Cluster name"
+      externalDocs:
+        url: 'https://unraveldata.atlassian.net/wiki/x/LwC-Iw'
+  /clusters/nodes:
+    get:
+      tags:
+        - operation
+      parameters:
+        - $ref: '#/nonBodyParameters/start_time'
+        - $ref: '#/nonBodyParameters/end_time'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns a time series of all the nodes of cluster grouped by node
+            state
+          schema:
+            $ref: '#/definitions/NodeStateResponse'
+
+  /clusters/resources/cpu/allocated:
+    get:
+      tags:
+        - operation
+      parameters:
+        - $ref: '#/nonBodyParameters/from'
+        - $ref: '#/nonBodyParameters/to'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns a time series for allocated cpu in clusters
+          schema:
+            $ref: '#/definitions/ResourceResponse'
+                            
+  /clusters/resources/memory/allocated:
+    get:
+      tags:
+        - operation
+      parameters:
+        - $ref: '#/nonBodyParameters/from'
+        - $ref: '#/nonBodyParameters/to'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns a time series for allocated memory in clusters
+          schema:
+            $ref: '#/definitions/ResourceResponse'
+                         
+  /clusters/resources/cpu/total:
+    get:
+      tags:
+        - operation
+      parameters:
+        - $ref: '#/nonBodyParameters/from'
+        - $ref: '#/nonBodyParameters/to'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns a time series for total cpu in clusters
+          schema:
+            $ref: '#/definitions/ResourceResponse'
+                           
+  /clusters/resources/memory/total:
+    get:
+      tags:
+        - operation
+      parameters:
+        - $ref: '#/nonBodyParameters/from'
+        - $ref: '#/nonBodyParameters/to'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns a time series for total memory in clusters
+          schema:
+            $ref: '#/definitions/ResourceResponse'
+   
+  '/clusters/{clusterName}/resources/cpu/allocated':
+    get:
+      tags:
+        - operation
+      parameters:
+        - $ref: '#/nonBodyParameters/from'
+        - $ref: '#/nonBodyParameters/to'
+        - $ref: '#/nonBodyParameters/clusterName'       
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns a time series for allocated cpu in clusters
+          schema:
+            $ref: '#/definitions/ResourceResponse'
+                            
+  '/clusters/{clusterName}/resources/memory/allocated':
+    get:
+      tags:
+        - operation
+      parameters:
+        - $ref: '#/nonBodyParameters/from'
+        - $ref: '#/nonBodyParameters/to'
+        - $ref: '#/nonBodyParameters/clusterName' 
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns a time series for allocated memory in clusters
+          schema:
+            $ref: '#/definitions/ResourceResponse'
+                         
+  '/clusters/{clusterName}/resources/cpu/total':
+    get:
+      tags:
+        - operation
+      parameters:
+        - $ref: '#/nonBodyParameters/from'
+        - $ref: '#/nonBodyParameters/to'
+        - $ref: '#/nonBodyParameters/clusterName' 
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns a time series for total cpu in clusters
+          schema:
+            $ref: '#/definitions/ResourceResponse'
+                           
+  '/clusters/{clusterName}/resources/memory/total':
+    get:
+      tags:
+        - operation
+      parameters:
+        - $ref: '#/nonBodyParameters/from'
+        - $ref: '#/nonBodyParameters/to'
+        - $ref: '#/nonBodyParameters/clusterName' 
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns a time series for total memory in clusters
+          schema:
+            $ref: '#/definitions/ResourceResponse'
+
+  '/clusters/{clusterName}/nodes':
+    get:
+      tags:
+        - operation
+      parameters:
+        - $ref: '#/nonBodyParameters/from'
+        - $ref: '#/nonBodyParameters/to'
+        - $ref: '#/nonBodyParameters/clusterName'        
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: >-
+            Returns a time series of all the nodes of given cluster grouped by
+            node state
+          schema:
+            $ref: '#/definitions/NodeStateResponse'
+
+  /apps/search:
+    post:
+      tags:
+        - apps
+      produces:
+        - application/json
+      parameters:
+        - $ref: '#/nonBodyParameters/search_filters'
+      responses:
+        '200':
+          description: Returns search results
+          schema:
+            type: object
+            properties:
+              metadata:
+                type: object
+                properties: {}
+              results:
+                type: array
+                items:
+                  type: object
+                  properties: {}
+      externalDocs:
+        url: 'https://unraveldata.atlassian.net/wiki/x/k4C_Iw'
+
+  /apps/events/inefficient_apps/:
+    get:
+      tags:
+        - apps
+      produces:
+        - application/json
+      parameters:
+        - $ref: '#/nonBodyParameters/start_time'
+        - $ref: '#/nonBodyParameters/end_time'
+        - $ref: '#/nonBodyParameters/entity_type'        
+      responses:
+        '200':
+          description: Returns recent list of events
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/InefficientAppsResponse'
+       
+  /apps/status/running/:
+    get:
+      tags:
+        - apps
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns a time series apps state
+          schema:
+            $ref: '#/definitions/RunningAppsResponse'
+
+  /apps/status/finished/:
+    get:
+      tags:
+        - apps
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns a time series apps state in the past
+          schema:
+            $ref: '#/definitions/FinishedAppsResponse'
+
+  /apps/resources/cpu/allocated:
+    get:
+      tags:
+        - apps
+      parameters:
+        - $ref: '#/nonBodyParameters/from'
+        - $ref: '#/nonBodyParameters/to'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns a time series for Allocated CPU by app type
+          schema:
+            $ref: '#/definitions/ResourceResponse'
+              
+  /apps/resources/memory/allocated:
+    get:
+      tags:
+        - apps
+      parameters:
+        - $ref: '#/nonBodyParameters/from'
+        - $ref: '#/nonBodyParameters/to'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns a time series for Allocated Memory by app type
+          schema:
+            $ref: '#/definitions/ResourceResponse'
+  /apps/{app_id}/resource_usage:
+    get:
+      tags:
+        - apps
+      parameters:
+        - $ref: '#/nonBodyParameters/app_id'
+        - $ref: '#/nonBodyParameters/metric_id'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns resources metrics array for an application
+          schema:
+            type: array
+            items:
+              type: string
+  /apps/{app_id}/tags:
+    get:
+      tags:
+        - apps
+      parameters:
+        - $ref: '#/nonBodyParameters/app_id'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns tags of an application
+          schema:
+            type: array
+            items:
+              type: string
+
+  /yarn_rm/kill_app:
+    get:
+      tags:
+        - apps
+      parameters:
+        - $ref: '#/nonBodyParameters/clusterid'
+        - $ref: '#/nonBodyParameters/appid'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns the status code only
+  /yarn_rm/move_app:
+    get:
+      tags:
+        - apps
+      parameters:
+        - $ref: '#/nonBodyParameters/clusterid'
+        - $ref: '#/nonBodyParameters/appid'
+        - $ref: '#/nonBodyParameters/queue'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns the status code only
+
+ 
+
+  /workflows:
+    get:
+      tags:
+        - workflows
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns list of Workflows
+          schema:
+            type: array
+            items:
+              type: string
+
+  /workflows/missing_sla:
+    get:
+      tags:
+        - workflows
+      produces:
+        - application/json
+      parameters:
+        - $ref: '#/nonBodyParameters/from'
+        - $ref: '#/nonBodyParameters/to'
+      responses:
+        '200':
+          description: Returns list of Workflows which are missing SLA
+          schema:
+            $ref: '#/definitions/MissingSlaResponse'
+  /autoactions:
+    get:
+      tags:
+        - auto-actions
+      parameters:
+        - $ref: '#/nonBodyParameters/autoaction_status'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns list of active or inactive autoactions based on the 'enabled' parameter passed 
+          schema:
+            type: array
+            items:
+              type: string
+
+  /autoactions/recent_violations:
+    get:
+      tags:
+        - auto-actions
+      produces:
+        - application/json
+      parameters:
+        - $ref: '#/nonBodyParameters/start_time'
+        - $ref: '#/nonBodyParameters/end_time'
+        - $ref: '#/nonBodyParameters/limit'
+      responses:
+        '200':
+          description: Returns list of violations
+          schema:
+            type: array
+            items:
+              type: string
+  /autoactions/metrics:
+    get:
+      tags:
+        - auto-actions
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns list of autoaction metrics
+          schema:
+            type: array
+            items:
+              type: string
+  /autoactions/recent_violations?eventType=AAVA:
+    get:
+      tags:
+        - auto-actions
+      produces:
+        - application/json
+      parameters:
+        - $ref: '#/nonBodyParameters/appId'
+        - $ref: '#/nonBodyParameters/appType'
+        - $ref: '#/nonBodyParameters/user'
+        - $ref: '#/nonBodyParameters/start_time'
+        - $ref: '#/nonBodyParameters/end_time'
+        - $ref: '#/nonBodyParameters/limit'
+      responses:
+        '200':
+          description: Returns list of app violations
+          schema:
+            type: array
+            items:
+              type: string
+  /chargeback/cb/appt:
+    get:
+      tags:
+        - Chargeback
+      parameters:
+        - $ref: '#/nonBodyParameters/gte'
+        - $ref: '#/nonBodyParameters/lte'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns charge back by application type
+          schema:
+            type: array
+            items:
+              type: string
+      externalDocs:
+        url: 'https://unraveldata.atlassian.net/wiki/x/d4PcIw'
+
+  /chargeback/cb/appt/user:
+    get:
+      tags:
+        - Chargeback
+      parameters:
+        - $ref: '#/nonBodyParameters/gte'
+        - $ref: '#/nonBodyParameters/lte'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns charge back by user 
+          schema:
+            type: array
+            items:
+              type: string
+
+  /chargeback/cb/appt/queue:
+    get:
+      tags:
+        - Chargeback
+      parameters:
+        - $ref: '#/nonBodyParameters/gte'
+        - $ref: '#/nonBodyParameters/lte'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns charge back by queue
+          schema:
+            type: array
+            items:
+              type: string
+  /reports/data/kpis:
+    get:
+      tags:
+        - Data Insights
+      parameters:
+        - $ref: '#/nonBodyParameters/numDays'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns kpis
+          schema:
+            type: array
+            items:
+              type: string
+      externalDocs:
+        url: 'https://unraveldata.atlassian.net/wiki/x/awDAIw'
+  /common/app/{app_id}/recommendation:
+    get:
+      tags:
+        - Applications
+      parameters:
+        - $ref: '#/nonBodyParameters/app_id'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns recommendation for an application
+          schema:
+            type: array
+            items:
+              type: string
+  /common/app/{app_id}/appsummary:
+    get:
+      tags:
+        - Applications
+      parameters:
+        - $ref: '#/nonBodyParameters/app_id'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns summary of an application
+          schema:
+            type: array
+            items:
+              type: string
+  /common/app/{app_id}/extendedsummary:
+    get:
+      tags:
+        - Applications
+      parameters:
+        - $ref: '#/nonBodyParameters/app_id'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns summary and recommendation of an application
+          schema:
+            type: array
+            items:
+              type: string
+  /common/app/{app_id}/status:
+    get:
+      tags:
+        - Applications
+      parameters:
+        - $ref: '#/nonBodyParameters/app_id'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns status of an application
+          schema:
+            type: array
+            items:
+              type: string
+  /common/app/{app_id}/errors?apiMode=1:
+    get:
+      tags:
+        - Applications
+      parameters:
+        - $ref: '#/nonBodyParameters/app_id'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns errors of an application
+          schema:
+            type: array
+            items:
+              type: string
+  /common/app/{app_id}/logs:
+    get:
+      tags:
+        - Applications
+      parameters:
+        - $ref: '#/nonBodyParameters/app_id'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns logs of an application
+          schema:
+            type: array
+            items:
+              type: string
+  /common/app/details:
+    get:
+      tags:
+        - Applications
+      parameters:
+        - $ref: '#/nonBodyParameters/from'
+        - $ref: '#/nonBodyParameters/to'
+        - $ref: '#/nonBodyParameters/appTypes'
+        - $ref: '#/nonBodyParameters/appStatus'
+        - $ref: '#/nonBodyParameters/page'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns consolidated data  for an application
+          schema:
+            type: array
+            items:
+              type: string
+  /jobs:
+    get:
+      tags:
+      - Job
+      parameters:
+        - $ref: '#/nonBodyParameters/start_time'
+        - $ref: '#/nonBodyParameters/end_time'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns total job count  between a time period (1 hour interval)
+          schema:
+            type: array
+            items:
+              type: string
+  /jobs/bytype:
+    get:
+      tags:
+      - Job
+      parameters:
+        - $ref: '#/nonBodyParameters/start_time'
+        - $ref: '#/nonBodyParameters/end_time'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns Job Count by  app type between a time period (1 hour interval)
+          schema:
+            type: array
+            items:
+              type: string
+  /jobs/bystatus:
+    get:
+      tags:
+      - Job
+      parameters:
+        - $ref: '#/nonBodyParameters/start_time'
+        - $ref: '#/nonBodyParameters/end_time'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns Job Count by  status between a time period (1 hour interval)
+          schema:
+            type: array
+            items:
+              type: string
+  /celery/predict-capacity:
+    get:
+      tags:
+      - Forcasting
+      parameters:
+        - $ref: '#/nonBodyParameters/start'
+        - $ref: '#/nonBodyParameters/end'
+        - $ref: '#/nonBodyParameters/num_days_predict'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns task_id
+          schema:
+            type: array
+            items:
+              type: string
+  /reports/data/diskusage/get_latest_reports?task_name=capacity_prediction_task:
+    get:
+      tags:
+      - Forcasting
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns latest prediction task
+          schema:
+            type: array
+            items:
+              type: string
+  /reports/data/diskusage/capacity_task_details:
+    get:
+      tags:
+      - Forcasting
+      parameters:
+        - $ref: '#/nonBodyParameters/entity_id'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns forecasing report
+          schema:
+            type: array
+            items:
+              type: string
+  /celery/small-files-report:
+    get:
+      tags:
+      - Smallfiles
+      produces:
+        - application/json
+      parameters:
+        - $ref: '#/nonBodyParameters/avg_size_threshold'
+        - $ref: '#/nonBodyParameters/drill_down_subdirs_flag'
+        - $ref: '#/nonBodyParameters/num_files_threshold'
+        - $ref: '#/nonBodyParameters/top_n_small_files'
+        - $ref: '#/nonBodyParameters/use_avg_file_size_flag'
+        - $ref: '#/nonBodyParameters/max_parent_dir_depth'
+        - $ref: '#/nonBodyParameters/min_parent_dir_depth'
+      responses:
+        '200':
+          description: Returns latest small files
+          schema:
+            type: array
+            items:
+              type: string
+  /reports/data/diskusage/get_latest_reports?task_name=small_files_report:
+    get:
+      tags:
+      - Smallfiles
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns latest small files
+          schema:
+            type: array
+            items:
+              type: string
+  /reports/data/small_file_report_details:
+    get:
+      tags:
+        - Smallfiles
+      parameters:
+        - $ref: '#/nonBodyParameters/entity_id'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns small file report details
+          schema:
+            type: array
+            items:
+              type: string
+  /reports/files_reports/latest?reportType=huge_files:
+    get:
+      tags:
+        - File-Reports
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns huge file reports details
+          schema:
+            type: array
+            items:
+              type: string
+  /reports/files_reports/latest?reportType=medium_files:
+    get:
+      tags:
+        - File-Reports
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns huge file reports details
+          schema:
+            type: array
+            items:
+              type: string
+  /reports/files_reports/latest?reportType=tiny_files:
+    get:
+      tags:
+        - File-Reports
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns huge file reports details
+          schema:
+            type: array
+            items:
+              type: string           
+  /reports/files_reports/latest?reportType=empty_files:
+    get:
+      tags:
+        - File-Reports
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns huge file reports details
+          schema:
+            type: array
+            items:
+              type: string
+  /reports/data/diskusage/get_latest_reports?task_name=topx_report:
+    get:
+      tags:
+        - TopX
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns latest top x report
+          schema:
+            type: array
+            items:
+              type: string
+  /reports/data/diskusage/get_latest_success_reports?task_name=topx_report:
+    get:
+      tags:
+        - TopX
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns latest success top x report
+          schema:
+            type: array
+            items:
+              type: string
+  /reports/celeryreports/metadata:
+    get:
+      tags:
+        - TopX
+      parameters:
+        - $ref: '#/nonBodyParameters/report_instance_id'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns  top x report meta data 
+          schema:
+            type: array
+            items:
+              type: string
+  /reports/celeryreports:
+    get:
+      tags:
+        - TopX
+        - ClusterOptimization
+        - CloudReports
+      parameters:
+        - $ref: '#/nonBodyParameters/report_instance_id'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns latest  report details
+          schema:
+            type: array
+            items:
+              type: string
+
+  /celery/generate_cluster_app_param_report:
+    get:
+      tags:
+        - ClusterOptimization
+      parameters:
+        - $ref: '#/nonBodyParameters/author'
+        - $ref: '#/nonBodyParameters/end_day'
+        - $ref: '#/nonBodyParameters/end_month'
+        - $ref: '#/nonBodyParameters/end_year'
+        - $ref: '#/nonBodyParameters/start_day'
+        - $ref: '#/nonBodyParameters/start_month'
+        - $ref: '#/nonBodyParameters/start_year'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Run cluster optimiztion
+          schema:
+            type: array
+            items:
+              type: string
+
+  /reports/cluseroptimization/metadata:
+    get:
+      tags:
+        - ClusterOptimization
+      parameters:
+        - $ref: '#/nonBodyParameters/report_id'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns metadata
+          schema:
+            type: array
+            items:
+              type: string
+  /celery/analyze-queue-data?max_size=1000&version=2:
+    get:
+      tags:
+        - QueueAnalysis
+      parameters:
+        - $ref: '#/nonBodyParameters/start_time'
+        - $ref: '#/nonBodyParameters/end_time'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Run Queue analysis
+          schema:
+            type: array
+            items:
+              type: string
+  /reports/data/diskusage/get_latest_reports?task_name=queue_analysis_task:
+    get:
+      tags:
+        - QueueAnalysis
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns latest report
+          schema:
+            type: array
+            items:
+              type: string
+  /reports/data/diskusage/get_latest_success_reports?task_name=queue_analysis_task:
+    get:
+      tags:
+        - QueueAnalysis
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns latest success report
+          schema:
+            type: array
+            items:
+              type: string 
+  /reports/queueanalysis/get_latest_report_queue_names:
+    get:
+      tags:
+        - QueueAnalysis
+      parameters:
+        - $ref: '#/nonBodyParameters/entity_id'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns queue list
+          schema:
+            type: array
+            items:
+              type: string
+  /reports/queueanalysis/get_latest_report_by_queue_name:
+    get:
+      tags:
+        - QueueAnalysis
+      parameters:
+        - $ref: '#/nonBodyParameters/entity_id'
+        - $ref: '#/nonBodyParameters/queue_name'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns queue details
+          schema:
+            type: array
+            items:
+              type: string  
+  /reports/data/diskusage/get_latest_reports?task_name=cluster_discovery_task:
+    get:
+      tags:
+        - CloudReports
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns latest cluster discovery reports
+          schema:
+            type: array
+            items:
+              type: string  
+  /reports/data/diskusage/get_latest_success_reports?task_name=cluster_discovery_task:
+    get:
+      tags:
+        - CloudReports
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns latest success cluster discovery reports
+          schema:
+            type: array
+            items:
+              type: string
+  /celery/cluster-discovery:
+    get:
+      tags:
+        - CloudReports
+      parameters:
+        - $ref: '#/nonBodyParameters/start'
+        - $ref: '#/nonBodyParameters/end'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Run cluster discovery
+          schema:
+            type: array
+            items:
+              type: string
+  /reports/data/diskusage/get_latest_reports?task_name=cloud_mappings_grouped_reports_task:
+    get:
+      tags:
+        - CloudReports
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns latest cloud mapping per instance reports
+          schema:
+            type: array
+            items:
+              type: string 
+  /reports/data/diskusage/get_latest_success_reports?task_name=cloud_mappings_grouped_reports_task:
+    get:
+      tags:
+        - CloudReports
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns latest success cloud mapping per instance reports
+          schema:
+            type: array
+            items:
+              type: string
+  /celery/cloud-reports/cloud-providers:
+    get:
+      tags:
+        - CloudReports
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns cloud providers
+          schema:
+            type: array
+            items:
+              type: string
+  /reports/data/diskusage/get_latest_reports?task_name=cloud_reports_task:
+    get:
+      tags:
+        - CloudReports
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns latest success cloud mapping per host reports
+          schema:
+            type: array
+            items:
+              type: string 
+  /reports/data/diskusage/get_latest_success_reports?task_name=cloud_reports_task:
+    get:
+      tags:
+        - CloudReports
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns latest success cloud mapping per host reports
+          schema:
+            type: array
+            items:
+              type: string
+  /celery/cloud-mappings-grouped-reports:
+    get:
+      tags:
+        - CloudReports
+      parameters:
+        - $ref: '#/nonBodyParameters/cloud_provider'
+        - $ref: '#/nonBodyParameters/instance_type'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Run Cloud mapping per instance
+          schema:
+            type: array
+            items:
+              type: string
+  /celery/cloud-mappings-reports:
+    get:
+      tags:
+        - CloudReports
+      parameters:
+        - $ref: '#/nonBodyParameters/cloud_provider'
+        - $ref: '#/nonBodyParameters/instance_type'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Run Cloud mapping per host
+          schema:
+            type: array
+            items:
+              type: string
+  /reports/schedules:
+    get:
+      tags:
+        - ScheduledReports
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns Scheduled Reports
+          schema:
+            type: array
+            items:
+              type: string
+  /reports/archives/get_report_archives:
+    get:
+      tags:
+        - ReportArchives
+      parameters:
+        - $ref: '#/nonBodyParameters/start_time_utc'
+        - $ref: '#/nonBodyParameters/end_time_utc'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns Archived Reports
+          schema:
+            type: array
+            items:
+              type: string
+  /logstash/kpis:
+    get:
+      tags:
+      - logstash
+      parameters:
+        - $ref: '#/nonBodyParameters/start_time'
+        - $ref: '#/nonBodyParameters/end_time'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns  the logstash kpis 
+          schema:
+            type: array
+            items:
+              type: string
+  /logstash/nodes/list:
+    get:
+      tags:
+      - logstash
+      parameters:
+        - $ref: '#/nonBodyParameters/start_time'
+        - $ref: '#/nonBodyParameters/end_time'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns  the nodes list and their metrics
+          schema:
+            type: array
+            items:
+              type: string
+  /logstash/nodes/kpis:
+    get:
+      tags:
+      - logstash
+      parameters:
+        - $ref: '#/nonBodyParameters/start_time'
+        - $ref: '#/nonBodyParameters/end_time'
+        - $ref: '#/nonBodyParameters/overview-metrics'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns overall kpis(avg) of all nodes in logstash
+          schema:
+            type: array
+            items:
+              type: string
+  /logstash/nodes/{node}/kpis:
+    get:
+      tags:
+      - logstash
+      parameters:
+        - $ref: '#/nonBodyParameters/start_time'
+        - $ref: '#/nonBodyParameters/end_time'
+        - $ref: '#/nonBodyParameters/node-metrics'
+        - $ref: '#/nonBodyParameters/node'
+
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns the kpis of a particular node 
+          schema:
+            type: array
+            items:
+              type: string
+  /logstash/pipelines/list:
+    get:
+      tags:
+      - logstash
+      parameters:
+        - $ref: '#/nonBodyParameters/start_time'
+        - $ref: '#/nonBodyParameters/end_time'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns the list of pipelines and their metrics
+          schema:
+            type: array
+            items:
+              type: string
+  /logstash/pipelines/kpis:
+    get:
+      tags:
+      - logstash
+      parameters:
+        - $ref: '#/nonBodyParameters/start_time'
+        - $ref: '#/nonBodyParameters/end_time'
+        - $ref: '#/nonBodyParameters/pipeline-metrics'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns overall kpis(avg) of all pipeline
+          schema:
+            type: array
+            items:
+              type: string
+  /logstash/pipelines/{pipeline}/kpis:
+    get:
+      tags:
+      - logstash
+      parameters:
+        - $ref: '#/nonBodyParameters/start_time'
+        - $ref: '#/nonBodyParameters/end_time'
+        - $ref: '#/nonBodyParameters/pipeline-metrics'
+        - $ref: '#/nonBodyParameters/pipeline'
+
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns the kpis of a particular pipeline
+          schema:
+            type: array
+            items:
+              type: string
+  /elasticsearch/clusters/metrics:
+    get:
+      tags:
+      - elasticsearch
+      parameters:
+        - $ref: '#/nonBodyParameters/start_time'
+        - $ref: '#/nonBodyParameters/end_time'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description:  Returns  the  elasticsearch cluster level kpi metrics 
+          schema:
+            type: array
+  /elasticsearch/{cluster}/nodes:
+    get:
+      tags:
+      - elasticsearch
+      parameters:
+        - $ref: '#/nonBodyParameters/start_time'
+        - $ref: '#/nonBodyParameters/end_time'
+        - $ref: '#/nonBodyParameters/cluster'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns node list and their metrics of a elasticsearch cluster
+          schema:
+            type: array
+  /elasticsearch/{cluster}/kpi_cluster:
+    get:
+      tags:
+      - elasticsearch
+      parameters:
+        - $ref: '#/nonBodyParameters/start_time'
+        - $ref: '#/nonBodyParameters/end_time'
+        - $ref: '#/nonBodyParameters/cluster'
+        - $ref: '#/nonBodyParameters/elasticsearch-metric'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns cluster level metric value of  a particular metrics
+          schema:
+            type: array
+  /elasticsearch/{cluster}/kpi_node:
+    get:
+      tags:
+      - elasticsearch
+      parameters:
+        - $ref: '#/nonBodyParameters/start_time'
+        - $ref: '#/nonBodyParameters/end_time'
+        - $ref: '#/nonBodyParameters/cluster'
+        - $ref: '#/nonBodyParameters/elasticsearch-node-metric'
+        - $ref: '#/nonBodyParameters/node-elastic'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns cluster level  metric values of a  particular nodes 
+          schema:
+            type: array
+  /elasticsearch/{cluster}/index:
+    get:
+      tags:
+      - elasticsearch
+      parameters:
+        - $ref: '#/nonBodyParameters/start_time'
+        - $ref: '#/nonBodyParameters/end_time'
+        - $ref: '#/nonBodyParameters/cluster'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns  indices and their metrics of a elastic search cluster
+          schema:
+            type: array
+  /elasticsearch/{cluster}/kpi_index:
+    get:
+      tags:
+      - elasticsearch
+      parameters:
+        - $ref: '#/nonBodyParameters/start_time'
+        - $ref: '#/nonBodyParameters/end_time'
+        - $ref: '#/nonBodyParameters/cluster'
+        - $ref: '#/nonBodyParameters/elasticsearch-indices-metric'
+        - $ref: '#/nonBodyParameters/index'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns metric values of  the indices
+          schema:
+            type: array
+  /kibana/clusters/metrics:
+     get:
+      tags:
+      - kibana
+      parameters:
+        - $ref: '#/nonBodyParameters/start_time'
+        - $ref: '#/nonBodyParameters/end_time'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description:  Returns  the  kibana cluster level kpi metrics 
+          schema:
+            type: array
+  /kibana/{cluster}/kpi_cluster:
+    get:
+      tags:
+      - kibana
+      parameters:
+        - $ref: '#/nonBodyParameters/start_time'
+        - $ref: '#/nonBodyParameters/end_time'
+        - $ref: '#/nonBodyParameters/cluster'
+        - $ref: '#/nonBodyParameters/kibana-metric'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description:  Returns  the  kibana cluster level metrics values
+          schema:
+            type: array
+
+  /kafka/clusters:
+    get:
+      tags:
+      - kafka
+      parameters:
+        - $ref: '#/nonBodyParameters/gte'
+        - $ref: '#/nonBodyParameters/lt'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns  the  list of kafka cluster and their metrics
+          schema:
+            type: array
+
+  /kafka/{cluster}/kpi_clusters:
+    get:
+      tags:
+      - kafka
+      parameters:
+        - $ref: '#/nonBodyParameters/start_time'
+        - $ref: '#/nonBodyParameters/end_time'
+        - $ref: '#/nonBodyParameters/interval'
+        - $ref: '#/nonBodyParameters/cluster'
+        - $ref: '#/nonBodyParameters/kafka_metrics'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns  the KPIs for a given Kafka cluster.
+          schema:
+            type: array
+  /kafka/brokers:
+    get:
+      tags:
+      - kafka
+      parameters:
+        - $ref: '#/nonBodyParameters/start_time'
+        - $ref: '#/nonBodyParameters/end_time'
+        - $ref: '#/nonBodyParameters/cluster_id'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns list of kafka brokers
+          schema:
+            type: array
+  /kafka/{cluster}/kpi:
+    get:
+      tags:
+      - kafka
+      parameters:
+        - $ref: '#/nonBodyParameters/start_time'
+        - $ref: '#/nonBodyParameters/end_time'
+        - $ref: '#/nonBodyParameters/interval'
+        - $ref: '#/nonBodyParameters/cluster'
+        - $ref: '#/nonBodyParameters/broker'
+        - $ref: '#/nonBodyParameters/kafka_metrics'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns the KPIs for a given Kafka broker.
+          schema:
+            type: array
+  /kafka/{cluster}/kpi_topics:
+    get:
+      tags:
+      - kafka
+      parameters:
+        - $ref: '#/nonBodyParameters/start_time'
+        - $ref: '#/nonBodyParameters/end_time'
+        - $ref: '#/nonBodyParameters/interval'
+        - $ref: '#/nonBodyParameters/cluster'
+        - $ref: '#/nonBodyParameters/kafka_topic_metrics'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns KPIs for the Kafka topics 
+          schema:
+            type: array
+  /kafka/topics/partions/ts:
+    get:
+      tags:
+      - kafka
+      parameters:
+        - $ref: '#/nonBodyParameters/start_time'
+        - $ref: '#/nonBodyParameters/end_time'
+        - $ref: '#/nonBodyParameters/interval'
+        - $ref: '#/nonBodyParameters/cluster_id'
+        - $ref: '#/nonBodyParameters/kafka_metric_pattern'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns partition details about a given topic
+          schema:
+            type: array
+
+          
+securityDefinitions:
+  ApiKeyAuth:
+    type: apiKey
+    in: header
+    name: Authorization
+
+definitions:
+  AppStateResponse:
+    description: "Timeseries of apps state"
+    type: object
+    properties:
+      RUNNING:
+        type: array
+        items:
+          $ref: '#/definitions/TsObject'
+        description: "Number of apps in running state at a point in time"
+      ACCEPTED:
+        type: array
+        items:
+          $ref: '#/definitions/TsObject'
+        description: "Number of apps in accepted state at a point in time"
+      FINISHED:
+        type: array
+        items:
+          $ref: '#/definitions/TsObject'
+        description: "Number of apps in finished state at a point in time"
+      NEW_SAVING:
+        type: array
+        items:
+          $ref: '#/definitions/TsObject'
+        description: "Number of apps in saving state at a point in time"
+      NEW:
+        type: array
+        items:
+          $ref: '#/definitions/TsObject'
+        description: "Number of apps in new state at a point in time"
+  NodeStateResponse:
+    description: "Timeseries of cluster nodes state"
+    type: object
+    properties:
+      total:
+        type: array
+        items:
+          $ref: '#/definitions/TsObject'
+        description: "Total number of nodes at a point in time"
+      active:
+        type: array
+        items:
+          $ref: '#/definitions/TsObject'
+        description: "Number of active nodes at a point in time"
+      unhealthy:
+        type: array
+        items:
+          $ref: '#/definitions/TsObject'
+        description: "Number unhealthy nodes at a point in time"
+      lost:
+        type: array
+        items:
+          $ref: '#/definitions/TsObject'
+        description: "Number of lost nodes at a point in time"
+      rebooted:
+        type: array
+        items:
+          $ref: '#/definitions/TsObject'
+        description: "Number of rebooted nodes at a point in time"
+      decommissioned:
+        type: array
+        items:
+          $ref: '#/definitions/TsObject'
+        description: "Number of decommissioned nodes at a point in time"
+  ResourceResponse:
+    description: "Timeseries of resource usage in a cluster"
+    type: object
+    items:
+      type: object
+      properties:
+        date:
+          type: integer
+          format: int64
+          description: "Time in unix epoch time format"
+        resource_value:
+          type: integer
+          format: int64
+          description:
+  TsObject:
+    type: object
+    properties:
+      ts:
+        type: integer
+        format: int64
+        description: "Time in unix epoch time format"
+  MissingSlaResponse:
+    type: object
+    properties:
+      duration:
+        type: integer
+        format: int64
+      avgDuration:
+        type: integer
+        format: int64
+      user:
+        type: string
+      name: 
+        type: string
+  InefficientAppsResponse:
+    type: object
+    properties:
+      entity_type:
+        type: integer
+        format: int64
+      event_name:
+        type: string
+        format: int64
+      count:
+        type: integer
+        format: int64
+  RunningAppsResponse:
+    type: object
+    properties:
+      appsPending:
+        type: array
+        items:
+          type: integer
+          format: int64
+      appsRunning:
+        type: array
+        items:
+          type: integer
+          format: int64
+      date:
+        type: array
+        items:
+          type: string
+  FinishedAppsResponse:
+    type: object
+    description: "Timeseries of finished apps in past"
+    properties:
+      date:
+        type: integer
+        format: int64
+        description: "Time in unix epoch time format"
+      SUCCEEDED:
+        type: integer
+        format: int64
+        description: "Number of apps in succeedded state"
+      FAILED:
+        type: integer
+        format: int64
+        description: "Number of apps in failed state"
+      KILLED:
+        type: integer
+        format: int64
+        description: "Number of apps in killed state"
+
+
