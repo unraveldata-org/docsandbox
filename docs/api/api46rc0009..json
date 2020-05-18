@@ -1,12 +1,12 @@
-﻿{
+{
   "swagger": "2.0",
   "info": {
     "description": "Unravel rest endpoints",
     "version": "1.0.0",
     "title": "Unravel Rest Api",
     "contact": {
-      "name": "Api Doc",
-      "url": "https://docs.unraveldata.com/en/api.html"
+      "name": "API Doc",
+      "url": "https://docs.unraveldata.com/unravel-v46x/en/api.html"
     }
   },
   "basePath": "/api/v1/",
@@ -349,17 +349,10 @@
       "type": "object",
       "required": false
     },
-    "max_size_threshold": {
-      "name": "max_size_threshold",
+    "avg_size_threshold": {
+      "name": "avg_size_threshold",
       "in": "query",
-      "description": "max size thershold in bytes",
-      "type": "string",
-      "required": true
-    },
-    "min_size_threshold": {
-      "name": "min_size_threshold",
-      "in": "query",
-      "description": "min size thershold in bytes",
+      "description": "file size thershold in bytes",
       "type": "string",
       "required": true
     },
@@ -487,14 +480,7 @@
       "in": "query",
       "description": "instance type",
       "type": "string",
-      "required": true
-    },
-    "prefs": {
-      "name": "prefs",
-      "in": "query",
-      "description": "preference",
-      "type": "object",
-      "required": true
+      "required": false
     },
     "clusterid": {
       "name": "clusterid",
@@ -1265,7 +1251,7 @@
           "200": {
             "description": "Returns tags of an application",
             "schema": {
-              "type": "object",
+              "type": "array",
               "items": {
                 "type": "string"
               }
@@ -1335,10 +1321,36 @@
           "200": {
             "description": "Returns list of Workflows",
             "schema": {
-              "type": "object",
+              "type": "array",
               "items": {
                 "type": "string"
               }
+            }
+          }
+        }
+      }
+    },
+    "/workflows/missing_sla": {
+      "get": {
+        "tags": [
+          "workflows"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/nonBodyParameters/from"
+          },
+          {
+            "$ref": "#/nonBodyParameters/to"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns list of Workflows which are missing SLA",
+            "schema": {
+              "$ref": "#/definitions/MissingSlaResponse"
             }
           }
         }
@@ -1600,7 +1612,7 @@
           "200": {
             "description": "Returns recommendation for an application",
             "schema": {
-              "type": "object",
+              "type": "array",
               "items": {
                 "type": "string"
               }
@@ -1626,7 +1638,7 @@
           "200": {
             "description": "Returns summary of an application",
             "schema": {
-              "type": "object",
+              "type": "array",
               "items": {
                 "type": "string"
               }
@@ -1652,7 +1664,7 @@
           "200": {
             "description": "Returns summary and recommendation of an application",
             "schema": {
-              "type": "object",
+              "type": "array",
               "items": {
                 "type": "string"
               }
@@ -1678,7 +1690,7 @@
           "200": {
             "description": "Returns status of an application",
             "schema": {
-              "type": "object",
+              "type": "array",
               "items": {
                 "type": "string"
               }
@@ -1687,7 +1699,7 @@
         }
       }
     },
-    "/common/app/{app_id}/errors?apiMode=true": {
+    "/common/app/{app_id}/errors?apiMode=1": {
       "get": {
         "tags": [
           "Applications"
@@ -1704,7 +1716,7 @@
           "200": {
             "description": "Returns errors of an application",
             "schema": {
-              "type": "object",
+              "type": "array",
               "items": {
                 "type": "string"
               }
@@ -1797,7 +1809,7 @@
           "200": {
             "description": "Returns total job count  between a time period (1 hour interval)",
             "schema": {
-              "type": "object",
+              "type": "array",
               "items": {
                 "type": "string"
               }
@@ -1826,7 +1838,7 @@
           "200": {
             "description": "Returns Job Count by  app type between a time period (1 hour interval)",
             "schema": {
-              "type": "object",
+              "type": "array",
               "items": {
                 "type": "string"
               }
@@ -1855,7 +1867,7 @@
           "200": {
             "description": "Returns Job Count by  status between a time period (1 hour interval)",
             "schema": {
-              "type": "object",
+              "type": "array",
               "items": {
                 "type": "string"
               }
@@ -1887,7 +1899,7 @@
           "200": {
             "description": "Returns task_id",
             "schema": {
-              "type": "object",
+              "type": "array",
               "items": {
                 "type": "string"
               }
@@ -1908,7 +1920,7 @@
           "200": {
             "description": "Returns latest prediction task",
             "schema": {
-              "type": "object",
+              "type": "array",
               "items": {
                 "type": "string"
               }
@@ -1934,7 +1946,7 @@
           "200": {
             "description": "Returns forecasing report",
             "schema": {
-              "type": "object",
+              "type": "array",
               "items": {
                 "type": "string"
               }
@@ -1953,10 +1965,7 @@
         ],
         "parameters": [
           {
-            "$ref": "#/nonBodyParameters/max_size_threshold"
-          },
-          {
-            "$ref": "#/nonBodyParameters/min_size_threshold"
+            "$ref": "#/nonBodyParameters/avg_size_threshold"
           },
           {
             "$ref": "#/nonBodyParameters/drill_down_subdirs_flag"
@@ -1981,7 +1990,7 @@
           "200": {
             "description": "Returns latest small files",
             "schema": {
-              "type": "object",
+              "type": "array",
               "items": {
                 "type": "string"
               }
@@ -2002,7 +2011,7 @@
           "200": {
             "description": "Returns latest small files",
             "schema": {
-              "type": "object",
+              "type": "array",
               "items": {
                 "type": "string"
               }
@@ -2049,7 +2058,7 @@
           "200": {
             "description": "Returns huge file reports details",
             "schema": {
-              "type": "object",
+              "type": "array",
               "items": {
                 "type": "string"
               }
@@ -2070,7 +2079,7 @@
           "200": {
             "description": "Returns huge file reports details",
             "schema": {
-              "type": "object",
+              "type": "array",
               "items": {
                 "type": "string"
               }
@@ -2091,7 +2100,7 @@
           "200": {
             "description": "Returns huge file reports details",
             "schema": {
-              "type": "object",
+              "type": "array",
               "items": {
                 "type": "string"
               }
@@ -2112,7 +2121,7 @@
           "200": {
             "description": "Returns huge file reports details",
             "schema": {
-              "type": "object",
+              "type": "array",
               "items": {
                 "type": "string"
               }
@@ -2133,7 +2142,7 @@
           "200": {
             "description": "Returns latest top x report",
             "schema": {
-              "type": "object",
+              "type": "array",
               "items": {
                 "type": "string"
               }
@@ -2154,7 +2163,7 @@
           "200": {
             "description": "Returns latest success top x report",
             "schema": {
-              "type": "object",
+              "type": "array",
               "items": {
                 "type": "string"
               }
@@ -2180,7 +2189,7 @@
           "200": {
             "description": "Returns  top x report meta data",
             "schema": {
-              "type": "object",
+              "type": "array",
               "items": {
                 "type": "string"
               }
@@ -2208,7 +2217,7 @@
           "200": {
             "description": "Returns latest  report details",
             "schema": {
-              "type": "object",
+              "type": "array",
               "items": {
                 "type": "string"
               }
@@ -2252,7 +2261,7 @@
           "200": {
             "description": "Run cluster optimiztion",
             "schema": {
-              "type": "object",
+              "type": "array",
               "items": {
                 "type": "string"
               }
@@ -2307,7 +2316,7 @@
           "200": {
             "description": "Run Queue analysis",
             "schema": {
-              "type": "object",
+              "type": "array",
               "items": {
                 "type": "string"
               }
@@ -2328,7 +2337,7 @@
           "200": {
             "description": "Returns latest report",
             "schema": {
-              "type": "object",
+              "type": "array",
               "items": {
                 "type": "string"
               }
@@ -2349,7 +2358,7 @@
           "200": {
             "description": "Returns latest success report",
             "schema": {
-              "type": "object",
+              "type": "array",
               "items": {
                 "type": "string"
               }
@@ -2375,7 +2384,7 @@
           "200": {
             "description": "Returns queue list",
             "schema": {
-              "type": "object",
+              "type": "array",
               "items": {
                 "type": "string"
               }
@@ -2404,7 +2413,7 @@
           "200": {
             "description": "Returns queue details",
             "schema": {
-              "type": "object",
+              "type": "array",
               "items": {
                 "type": "string"
               }
@@ -2425,7 +2434,7 @@
           "200": {
             "description": "Returns latest cluster discovery reports",
             "schema": {
-              "type": "object",
+              "type": "array",
               "items": {
                 "type": "string"
               }
@@ -2446,7 +2455,7 @@
           "200": {
             "description": "Returns latest success cluster discovery reports",
             "schema": {
-              "type": "object",
+              "type": "array",
               "items": {
                 "type": "string"
               }
@@ -2475,7 +2484,49 @@
           "200": {
             "description": "Run cluster discovery",
             "schema": {
-              "type": "object",
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/reports/data/diskusage/get_latest_reports?task_name=cloud_mappings_grouped_reports_task": {
+      "get": {
+        "tags": [
+          "CloudReports"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns latest cloud mapping per instance reports",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/reports/data/diskusage/get_latest_success_reports?task_name=cloud_mappings_grouped_reports_task": {
+      "get": {
+        "tags": [
+          "CloudReports"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns latest success cloud mapping per instance reports",
+            "schema": {
+              "type": "array",
               "items": {
                 "type": "string"
               }
@@ -2496,7 +2547,7 @@
           "200": {
             "description": "Returns cloud providers",
             "schema": {
-              "type": "object",
+              "type": "array",
               "items": {
                 "type": "string"
               }
@@ -2517,7 +2568,7 @@
           "200": {
             "description": "Returns latest success cloud mapping per host reports",
             "schema": {
-              "type": "object",
+              "type": "array",
               "items": {
                 "type": "string"
               }
@@ -2538,7 +2589,36 @@
           "200": {
             "description": "Returns latest success cloud mapping per host reports",
             "schema": {
-              "type": "object",
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/celery/cloud-mappings-grouped-reports": {
+      "get": {
+        "tags": [
+          "CloudReports"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/nonBodyParameters/cloud_provider"
+          },
+          {
+            "$ref": "#/nonBodyParameters/instance_type"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Run Cloud mapping per instance",
+            "schema": {
+              "type": "array",
               "items": {
                 "type": "string"
               }
@@ -2558,9 +2638,6 @@
           },
           {
             "$ref": "#/nonBodyParameters/instance_type"
-          },
-          {
-            "$ref": "#/nonBodyParameters/prefs"
           }
         ],
         "produces": [
@@ -2570,7 +2647,7 @@
           "200": {
             "description": "Run Cloud mapping per host",
             "schema": {
-              "type": "object",
+              "type": "array",
               "items": {
                 "type": "string"
               }
@@ -2649,7 +2726,7 @@
           "200": {
             "description": "Returns  the logstash kpis",
             "schema": {
-              "type": "object",
+              "type": "array",
               "items": {
                 "type": "string"
               }
@@ -2710,7 +2787,7 @@
           "200": {
             "description": "Returns overall kpis(avg) of all nodes in logstash",
             "schema": {
-              "type": "object",
+              "type": "array",
               "items": {
                 "type": "string"
               }
@@ -2806,7 +2883,7 @@
           "200": {
             "description": "Returns overall kpis(avg) of all pipeline",
             "schema": {
-              "type": "object",
+              "type": "array",
               "items": {
                 "type": "string"
               }
@@ -2841,7 +2918,7 @@
           "200": {
             "description": "Returns the kpis of a particular pipeline",
             "schema": {
-              "type": "object",
+              "type": "array",
               "items": {
                 "type": "string"
               }
@@ -2870,7 +2947,7 @@
           "200": {
             "description": "Returns  the  elasticsearch cluster level kpi metrics",
             "schema": {
-              "type": "object"
+              "type": "array"
             }
           }
         }
@@ -2899,7 +2976,7 @@
           "200": {
             "description": "Returns node list and their metrics of a elasticsearch cluster",
             "schema": {
-              "type": "object"
+              "type": "array"
             }
           }
         }
@@ -2931,7 +3008,7 @@
           "200": {
             "description": "Returns cluster level metric value of  a particular metrics",
             "schema": {
-              "type": "object"
+              "type": "array"
             }
           }
         }
@@ -2966,7 +3043,7 @@
           "200": {
             "description": "Returns cluster level  metric values of a  particular nodes",
             "schema": {
-              "type": "object"
+              "type": "array"
             }
           }
         }
@@ -2995,7 +3072,7 @@
           "200": {
             "description": "Returns  indices and their metrics of a elastic search cluster",
             "schema": {
-              "type": "object"
+              "type": "array"
             }
           }
         }
@@ -3030,7 +3107,7 @@
           "200": {
             "description": "Returns metric values of  the indices",
             "schema": {
-              "type": "object"
+              "type": "array"
             }
           }
         }
@@ -3056,7 +3133,7 @@
           "200": {
             "description": "Returns  the  kibana cluster level kpi metrics",
             "schema": {
-              "type": "object"
+              "type": "array"
             }
           }
         }
@@ -3088,7 +3165,7 @@
           "200": {
             "description": "Returns  the  kibana cluster level metrics values",
             "schema": {
-              "type": "object"
+              "type": "array"
             }
           }
         }
@@ -3114,7 +3191,7 @@
           "200": {
             "description": "Returns  the  list of kafka cluster and their metrics",
             "schema": {
-              "type": "object"
+              "type": "array"
             }
           }
         }
@@ -3149,7 +3226,7 @@
           "200": {
             "description": "Returns  the KPIs for a given Kafka cluster.",
             "schema": {
-              "type": "object"
+              "type": "array"
             }
           }
         }
@@ -3178,7 +3255,7 @@
           "200": {
             "description": "Returns list of kafka brokers",
             "schema": {
-              "type": "object"
+              "type": "array"
             }
           }
         }
@@ -3216,7 +3293,7 @@
           "200": {
             "description": "Returns the KPIs for a given Kafka broker.",
             "schema": {
-              "type": "object"
+              "type": "array"
             }
           }
         }
@@ -3251,7 +3328,7 @@
           "200": {
             "description": "Returns KPIs for the Kafka topics",
             "schema": {
-              "type": "object"
+              "type": "array"
             }
           }
         }
